@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"MGateAllCA/controller/process"
+	"M-Gate/controller/process"
 	"log"
 	"net/http"
 
