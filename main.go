@@ -1,6 +1,6 @@
 package main
 
-import "MGateAllCA/controller"
+import "M-Gate/controller"
 
 func main() {
 

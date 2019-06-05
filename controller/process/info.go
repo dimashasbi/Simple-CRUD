@@ -1,7 +1,7 @@
 package process
 
 import (
-	"MGateAllCA/response"
+	"M-Gate/response"
 
 	"net/http"
 )
