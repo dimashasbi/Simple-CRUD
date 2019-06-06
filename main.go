@@ -1,6 +1,10 @@
 package main
 
-import "M-Gate/controller"
+import (
+	"M-Gate/controller"
+
+	_ "github.com/jinzhu/gorm/dialects/postgres"
+)
 
 func main() {
 
