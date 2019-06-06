@@ -2,17 +2,21 @@ package controller
 
 import (
 	"M-Gate/controller/process"
+	"M-Gate/dbservice"
 	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
 )
 
+// Initialize Application
 func (handler *App) Initialize() {
+	dbservice.DBInit()
 	handler.Router = mux.NewRouter()
 	handler.setProcess()
 }
 
+// setProcess for URL
 func (a *App) setProcess() {
 	a.GET("/api/billers", a.GetBiller)
 }
