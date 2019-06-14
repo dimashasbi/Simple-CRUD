@@ -34,6 +34,8 @@ func DBInit() *gorm.DB {
 	return db
 }
 
-func DBsetValue(db *gorm.DB) bool {
-	
-}
+// set configuration
+// func DBsetValue(db *gorm.DB) bool {
+// 	// err := db.Create(&SystemSettings{})
+// 	return true
+// }

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"M-Gate/setconfigdb/dbsetup"
+	"M-GateDBConfig/dbsetup"
 
 	"github.com/jinzhu/gorm"
 )
