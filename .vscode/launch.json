@@ -10,7 +10,7 @@
             "request": "launch",
             "mode": "auto",
             // "program": "${workspaceFolder}/main_setconfigdb.go",
-            "program": "${fileDirname}",
+            "program": "${workspaceFolder}/main_setconfigdb.go",
 
             "env": {},
             "args": []

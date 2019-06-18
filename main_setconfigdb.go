@@ -2,8 +2,8 @@ package main
 
 import (
 	"M-GateDBConfig/dbsetup"
-
-	"github.com/jinzhu/gorm"
+	"fmt"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 func main() {
@@ -11,6 +11,7 @@ func main() {
 	db := dbsetup.DBInit()
 
 	// put configuration A
-	dbsetup.DBsetValue()
+	dbsetup.DBsetValue(db)
 	//
+	fmt.Print("Input data is success")
 }
