@@ -35,6 +35,7 @@ func DBInit() *gorm.DB {
 
 // set configuration
 func DBsetValue(db *gorm.DB) {
+
 	result := db.Create(&SystemSettings{Key: "Hasbi", Value: "Kucing"})
 	if result.Error != nil {
 		fmt.Printf("failed input to Database %v", result.Error)
