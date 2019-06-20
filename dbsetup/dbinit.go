@@ -29,11 +29,22 @@ func DBInit() *gorm.DB {
 		panic("failed to connect to database, error")
 	}
 	fmt.Println("DB Success")
-	db.AutoMigrate(SystemSettings{})
+	// migrate table and colomn (setting increment, null, size)
+	MigrateResult := db.AutoMigrate(&SystemSettings{}, &Parameters{}, &CaAPIMessages{}, &CaAPITransactions{}, &IsoAPIMessages{})
+	if MigrateResult.Error != nil {
+		fmt.Printf("failed Migrate Database %v", MigrateResult.Error)
+		panic("failed  Migrate Database, error")
+	}
+	// input index
+	IndexingResult := db.Model(&CaAPITransactions{}).AddIndex("idx_ID", "id")
+	if IndexingResult.Error != nil {
+		fmt.Printf("failed input index %v", IndexingResult.Error)
+		panic("failed  input idnex, error")
+	}
 	return db
 }
 
-// set configuration
+// DBsetValue is using for set configuration value on DB
 func DBsetValue(db *gorm.DB) {
 
 	result := db.Create(&SystemSettings{Key: "Hasbi", Value: "Kucing"})
