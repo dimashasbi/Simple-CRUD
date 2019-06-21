@@ -42,21 +42,21 @@ type CaAPIMessages struct {
 
 // CaAPITransactions for Logging Payment Transaction of API (1 line 2 direction)
 type CaAPITransactions struct {
-	ID                     int       `gorm:"primary_key;index:ID_CaAPITransaction;AUTO_INCREMENT"`
+	ID                     int       `gorm:"primary_key;AUTO_INCREMENT"`
 	DateTime               time.Time `gorm:"not null"`
-	RequestID              string    `gorm:"index:RequestID_CaAPITransaction;not null"`
-	AuthKey                string    `gorm:"index:AuthKey_CaAPITransaction"`
+	RequestID              string    `gorm:"not null"`
+	AuthKey                string    `gorm:"not null"`
 	TransactionType        string    `gorm:"not null"`
 	ProductIndicator       string    `gorm:"size:5"`
 	RequestData            string
 	ResponseData           string
-	CustomerNumber         string `gorm:"index:IDCustomer_CaAPITransaction;size:50"`
+	CustomerNumber         string `gorm:"size:50"`
 	ResponseCode           string `gorm:"not null;size:2"`
 	Status                 string `gorm:"not null"`
 	Reversed               string `gorm:"not null"`
-	TerminalID             string `gorm:"index:TerminalID_CaAPITransaction;size:16;"`
-	STAN                   string `gorm:"index:STAN_CaAPITransaction;size:6"`
-	RRN                    string `gorm:"index:RRN_CaAPITransaction;size:12"`
+	TerminalID             string `gorm:"size:16;"`
+	STAN                   string `gorm:"size:6"`
+	RRN                    string `gorm:"size:12"`
 	ResponseDescription    string
 	TransmissionDateTime   time.Time
 	TransactionDateTime    time.Time
@@ -106,17 +106,17 @@ type CaAPITransactions struct {
 
 // IsoAPIMessages for Logging Transaction between API and system behind (1 line 1 direction)
 type IsoAPIMessages struct {
-	ID                       int       `gorm:"primary_key;index:ID_IsoAPIMessages;AUTO_INCREMENT"`
+	ID                       int       `gorm:"primary_key;AUTO_INCREMENT"`
 	DateTime                 time.Time `gorm:"not null"`
 	IsoMessages              string    `gorm:"not null"`
-	RequestID                string    `gorm:"index:RequestID_IsoAPIMessages;not null;"`
+	RequestID                string    `gorm:"not null;"`
 	MessageDestination       string    `gorm:"not null"`
 	MTI                      string    `gorm:"not null;size:4"`
 	PrimaryAccountNumber     string    `gorm:"not null;size:19"`
 	ProcessingCode           string    `gorm:"not null;size:6"`
 	TransactionAmount        int       `gorm:"not null;size:12"`
 	TransmissionDateTime     time.Time `gorm:"not null"`
-	SystemTraceAuditNumber   string    `gorm:"not null;size:6;index:STAN_IsoAPIMessages"`
+	SystemTraceAuditNumber   string    `gorm:"not null;size:6"`
 	LocalTransactionDate     string    `gorm:"not null;size:6"`
 	LocalTransactionTime     string    `gorm:"not null;size:4"`
 	SettlementDate           string    `gorm:"not null;size:4"`
@@ -125,10 +125,10 @@ type IsoAPIMessages struct {
 	AcquiringInstitutionID   string    `gorm:"not null;size:11"`
 	ForwardInstitutionID     string    `gorm:"size:11"`
 	Track2Data               string    `gorm:"size:37"`
-	RetrievalReferenceNumber string    `gorm:"not null;size:12;index:RRN_IsoAPIMessages"`
+	RetrievalReferenceNumber string    `gorm:"not null;size:12"`
 	ResponseCode             string    `gorm:"not null;size:2"`
-	CardAcceptorTerminalID   string    `gorm:"not null;size:16;index:TerminalID_IsoAPIMessages"`
-	CardAcceptorID           string    `gorm:"not null;size:15;"`
+	CardAcceptorTerminalID   string    `gorm:"not null;size:16"`
+	CardAcceptorID           string    `gorm:"not null;size:15"`
 	AdditionalData           string
 	CurrencyCode             string `gorm:"not null;size:3"`
 	FromAccountNumber        string `gorm:"size:28;"`
