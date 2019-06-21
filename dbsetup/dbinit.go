@@ -56,12 +56,16 @@ func DBsetIndex(db *gorm.DB) *gorm.DB {
 	// index:STAN_IsoAPIMessages
 	// index:RRN_IsoAPIMessages
 	// index:TerminalID_IsoAPIMessages
-
-	IndexingResult := db.Model(&CaAPITransactions{}).AddIndex("idx_ID", "id")
-	if IndexingResult.Error != nil {
-		fmt.Printf("failed input index %v", IndexingResult.Error)
+	result := db.Where("indexname = ?", "idx_id").Find(&PgIndexes)
+	result.Error != nil {
+		fmt.Printf("failed read data %v", result.Error)
 	}
-	return IndexingResult
+	fmt.Printf("query : %v", result)
+	// IndexingResult := db.Model(&CaAPITransactions{}).AddIndex("idx_ID", "id")
+	// if IndexingResult.Error != nil {
+	// 	fmt.Printf("failed input index %v", IndexingResult.Error)
+	// }
+	return nil
 }
 
 // DBsetValue is using for set configuration value on DB

@@ -40,6 +40,10 @@ type CaAPIMessages struct {
 	IDCustomer   string
 }
 
+// PgIndexes to find index
+type PgIndexes struct {
+}
+
 // CaAPITransactions for Logging Payment Transaction of API (1 line 2 direction)
 type CaAPITransactions struct {
 	ID                     int       `gorm:"primary_key;AUTO_INCREMENT"`
