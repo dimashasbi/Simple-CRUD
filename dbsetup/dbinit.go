@@ -2,6 +2,7 @@ package dbsetup
 
 import (
 	"fmt"
+
 	"github.com/jinzhu/gorm"
 )
 
@@ -43,46 +44,25 @@ func DBInit() *gorm.DB {
 
 // DBsetIndex for setting Index Database
 func DBsetIndex(db *gorm.DB) *gorm.DB {
-	// index this
-	// index:ID_CaAPITransaction
-	// index:RequestID_CaAPITransaction;
-	// index:AuthKey_CaAPITransaction
-	// index:IDCustomer_CaAPITransaction;
-	// index:TerminalID_CaAPITransaction;
-	// index:STAN_CaAPITransaction;
-	// index:RRN_CaAPITransaction;
-	// index:ID_IsoAPIMessages;
-	// index:RequestID_IsoAPIMessages
-	// index:STAN_IsoAPIMessages
-	// index:RRN_IsoAPIMessages
-	// index:TerminalID_IsoAPIMessages
-	result := db.Where("indexname = ?", "idx_id").Find(&PgIndexes)
-	result.Error != nil {
-		fmt.Printf("failed read data %v", result.Error)
-	}
-	fmt.Printf("query : %v", result)
-	// IndexingResult := db.Model(&CaAPITransactions{}).AddIndex("idx_ID", "id")
-	// if IndexingResult.Error != nil {
-	// 	fmt.Printf("failed input index %v", IndexingResult.Error)
-	// }
+	db.Model(&CaAPITransactions{}).AddIndex("id_ca_api", "id")
+	db.Model(&CaAPITransactions{}).AddIndex("request_id_ca_api", "request_id")
+	db.Model(&CaAPITransactions{}).AddIndex("auth_key_ca_api", "auth_key")
+	db.Model(&CaAPITransactions{}).AddIndex("customer_number_ca_api", "customer_number")
+	db.Model(&CaAPITransactions{}).AddIndex("terminal_id_ca_api", "terminal_id")
+	db.Model(&CaAPITransactions{}).AddIndex("rrn_ca_api", "rrn")
+	db.Model(&IsoAPIMessages{}).AddIndex("id_iso_api", "id")
+	db.Model(&IsoAPIMessages{}).AddIndex("stan_iso_api", "system_trace_audit_number")
+	db.Model(&IsoAPIMessages{}).AddIndex("rrn__iso_api", "retrieval_reference_number")
+	db.Model(&IsoAPIMessages{}).AddIndex("terminal_id_iso_api", "card_acceptor_terminal_id")
 	return nil
 }
 
 // DBsetValue is using for set configuration value on DB
 func DBsetValue(db *gorm.DB) *gorm.DB {
-	result := db.Create(&SystemSettings{Key: "Hasbi", Value: "Kucing"})
+	result := db.Create(&SystemSettings{Key: "Hasbi", Value: "Meong"})
 	if result.Error != nil {
 		fmt.Printf("failed input to Database %v", result.Error)
 		panic("failed input to database, error")
 	}
 	return result
 }
-
-// type argError struct {
-// 	arg  int
-// 	prob string
-// }
-
-// func (e *argError) Error() string {
-// 	return fmt.Sprintf("%d - %s", e.arg, e.prob)
-// }

@@ -3,8 +3,9 @@ package main
 import (
 	"M-GateDBConfig/dbsetup"
 	"fmt"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"io/ioutil"
+
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 func main() {

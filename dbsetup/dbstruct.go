@@ -1,8 +1,9 @@
 package dbsetup
 
 import (
-	"github.com/jinzhu/gorm/dialects/postgres"
 	"time"
+
+	"github.com/jinzhu/gorm/dialects/postgres"
 )
 
 //// Application Configuration
@@ -42,6 +43,20 @@ type CaAPIMessages struct {
 
 // PgIndexes to find index
 type PgIndexes struct {
+	// index this
+	// index:ID_CaAPITransaction
+	// index:RequestID_CaAPITransaction;
+	// index:AuthKey_CaAPITransaction
+	// index:IDCustomer_CaAPITransaction;
+	// index:TerminalID_CaAPITransaction;
+	// index:STAN_CaAPITransaction;
+	// index:RRN_CaAPITransaction;
+	
+	// index:ID_IsoAPIMessages;
+	// index:RequestID_IsoAPIMessages
+	// index:STAN_IsoAPIMessages
+	// index:RRN_IsoAPIMessages
+	// index:TerminalID_IsoAPIMessages
 }
 
 // CaAPITransactions for Logging Payment Transaction of API (1 line 2 direction)
