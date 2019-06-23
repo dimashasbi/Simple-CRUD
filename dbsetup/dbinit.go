@@ -1,31 +1,26 @@
 package dbsetup
 
 import (
+	"M-GateDBConfig/configuration"
 	"fmt"
-
 	"github.com/jinzhu/gorm"
 )
 
-const (
-	host     = "localhost"
-	port     = 5432
-	user     = "hasbi"
-	password = "dimskii"
-	dbname   = "hasbidatabase"
-)
-
-type inDB struct {
+// InDB for db structure
+type InDB struct {
 	database *gorm.DB
 }
 
 // DBInit create connection to database
-func DBInit() *gorm.DB {
+func DBInit(data *configuration.ConfigurationModel) *gorm.DB {
+
+	fmt.Printf("keluarr lu : %v", data.Port)
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
 		"password=%s dbname=%s sslmode=disable",
-		host, port, user, password, dbname)
+		data.Host, data.Port, data.User, data.Password, data.Dbname)
 
 	db, err := gorm.Open("postgres", psqlInfo)
-	baseDb := inDB{database: db}
+	baseDb := InDB{database: db}
 	if err != nil {
 		fmt.Printf("failed to connect Database %v", err)
 		panic("failed to connect to database, error")
@@ -59,7 +54,7 @@ func DBsetIndex(db *gorm.DB) *gorm.DB {
 
 // DBsetValue is using for set configuration value on DB
 func DBsetValue(db *gorm.DB) *gorm.DB {
-	result := db.Create(&SystemSettings{Key: "Hasbi", Value: "Meong"})
+	result := db.Create(&SystemSettings{Key: "udah", Value: "Bisaaa yeay"})
 	if result.Error != nil {
 		fmt.Printf("failed input to Database %v", result.Error)
 		panic("failed input to database, error")

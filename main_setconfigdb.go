@@ -9,19 +9,23 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
+// AllModelData that have Global Value
+type AllModelData struct {
+	configuration.ConfigurationModel
+	dbsetup.InDB
+}
+
 func main() {
 
-	test := true
-
-	// read config file
-	test = configuration.getConfig(test)
-
+	// i want to read file Config here
+	myConfig := configuration.GetConfig()
+	fmt.Printf("isinya : %v \n", myConfig.Password)
 	// migrate DB
-	db := dbsetup.DBInit()
+	db := dbsetup.DBInit(&myConfig)
 
 	// put configuration A
 	dbsetup.DBsetValue(db)
-	configuration.DBsetValue(db)
+	// configuration.DBsetValue(db)
 	//
 	// create file
 	err := ioutil.WriteFile("filename.txt", []byte("Hello"), 0755)

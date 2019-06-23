@@ -2,13 +2,13 @@ package configuration
 
 import (
 	"fmt"
+	"strconv"
 
-	"github.com/jinzhu/gorm"
-	"github.com/tkanos/gonfig"
+	"github.com/spf13/viper"
 )
 
 // Configuration Model file
-type Configuration struct {
+type ConfigurationModel struct {
 	Host     string
 	Port     int
 	User     string
@@ -16,19 +16,26 @@ type Configuration struct {
 	Dbname   string
 }
 
-func getConfig(ya bool) bool {
-	//filename is the path to the json config file
-	err := gonfig.GetConf("config/config.json", &configuration)
-	fmt.Printf("configuration port", Configuration)
-	return true
-}
+// GetConfig to start get file
+func GetConfig() ConfigurationModel {
+	viper.SetConfigType("json")
+	viper.AddConfigPath("configuration/")
+	viper.SetConfigName("config")
 
-// DBsetValue is using for set configuration value on DB
-func DBsetValue(db *gorm.DB) *gorm.DB {
-	result := db.Create(&SystemSettings{Key: "Hasbi", Value: "Meong"})
-	if result.Error != nil {
-		fmt.Printf("failed input to Database %v", result.Error)
-		panic("failed input to database, error")
+	err := viper.ReadInConfig()
+	if err != nil {
+		fmt.Printf("ga bisa bacaaa : %v ", err)
 	}
-	return result
+	fmt.Printf("bisa dibaca  %v \n ", viper.GetString("port"))
+
+	// put to Model
+	dbhost := ConfigurationModel{}
+	dbhost.Host = viper.GetString("host")
+	port, err := strconv.Atoi(viper.GetString("port"))
+	dbhost.Port = port
+	dbhost.User = viper.GetString("user")
+	dbhost.Password = viper.GetString("password")
+	dbhost.Dbname = viper.GetString("dbname")
+
+	return dbhost
 }
