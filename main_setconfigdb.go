@@ -1,6 +1,7 @@
 package main
 
 import (
+	"M-GateDBConfig/configuration"
 	"M-GateDBConfig/dbsetup"
 	"fmt"
 	"io/ioutil"
@@ -9,11 +10,18 @@ import (
 )
 
 func main() {
+
+	test := true
+
+	// read config file
+	test = configuration.getConfig(test)
+
 	// migrate DB
 	db := dbsetup.DBInit()
 
 	// put configuration A
 	dbsetup.DBsetValue(db)
+	configuration.DBsetValue(db)
 	//
 	// create file
 	err := ioutil.WriteFile("filename.txt", []byte("Hello"), 0755)

@@ -1,0 +1,7 @@
+{    
+	"host"     : "localhost",
+	"port"     : 5432 ,
+	"user"     : "hasbi",
+	"password" : "dimskii",
+	"dbname"   : "hasbidatabase"
+}
