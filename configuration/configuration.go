@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-// Configuration Model file
+// ConfigurationModel file for
 type ConfigurationModel struct {
 	Host     string
 	Port     int
@@ -36,6 +36,10 @@ func GetConfig() ConfigurationModel {
 	dbhost.User = viper.GetString("user")
 	dbhost.Password = viper.GetString("password")
 	dbhost.Dbname = viper.GetString("dbname")
+
+	// change data now
+	viper.Set("host", "127.0.0.1")
+	viper.WriteConfig()
 
 	return dbhost
 }

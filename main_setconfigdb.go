@@ -10,10 +10,10 @@ import (
 )
 
 // AllModelData that have Global Value
-type AllModelData struct {
-	configuration.ConfigurationModel
-	dbsetup.InDB
-}
+// type AllModelData struct {
+// 	*configuration.ConfigurationModel
+// 	*dbsetup.InDB
+// }
 
 func main() {
 
