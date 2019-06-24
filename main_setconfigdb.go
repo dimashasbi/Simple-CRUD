@@ -3,6 +3,7 @@ package main
 import (
 	"M-GateDBConfig/configuration"
 	"M-GateDBConfig/dbsetup"
+	"M-GateDBConfig/setvalue"
 	"fmt"
 	"io/ioutil"
 
@@ -24,7 +25,7 @@ func main() {
 	db := dbsetup.DBInit(&myConfig)
 
 	// put configuration A
-	dbsetup.DBsetValue(db)
+	setvalue.SetValue()
 
 	// create file
 	err := ioutil.WriteFile("filename.txt", []byte("Hello"), 0755)

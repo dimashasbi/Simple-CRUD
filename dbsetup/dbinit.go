@@ -14,7 +14,6 @@ type InDB struct {
 // DBInit create connection to database
 func DBInit(data *configuration.ConfigurationModel) *gorm.DB {
 
-	fmt.Printf("keluarr lu : %v", data.Port)
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
 		"password=%s dbname=%s sslmode=disable",
 		data.Host, data.Port, data.User, data.Password, data.Dbname)

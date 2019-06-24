@@ -26,8 +26,7 @@ func GetConfig() ConfigurationModel {
 	if err != nil {
 		fmt.Printf("ga bisa bacaaa : %v ", err)
 	}
-	fmt.Printf("bisa dibaca  %v \n ", viper.GetString("port"))
-
+	
 	// put to Model
 	dbhost := ConfigurationModel{}
 	dbhost.Host = viper.GetString("host")
