@@ -1,6 +1,6 @@
 {
   "dbname": "hasbidatabase",
-  "host": "localhost",
+  "host": "127.0.0.1",
   "password": "dimskii",
   "port": 5432,
   "user": "hasbi"

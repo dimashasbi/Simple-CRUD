@@ -25,6 +25,7 @@ func DBInit(data *configuration.ConfigurationModel) *gorm.DB {
 		fmt.Printf("failed to connect Database %v", err)
 		panic("failed to connect to database, error")
 	}
+	
 	fmt.Println("DB Success")
 	// migrate table and colomn (setting increment, null, size)
 	MigrateResult := db.AutoMigrate(&SystemSettings{}, &Parameters{}, &CaAPIMessages{}, &CaAPITransactions{}, &IsoAPIMessages{})
