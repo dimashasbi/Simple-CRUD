@@ -24,7 +24,7 @@ func DBInit(data *configuration.ConfigurationModel) *gorm.DB {
 		fmt.Printf("failed to connect Database %v", err)
 		panic("failed to connect to database, error")
 	}
-	
+
 	fmt.Println("DB Success")
 	// migrate table and colomn (setting increment, null, size)
 	MigrateResult := db.AutoMigrate(&SystemSettings{}, &Parameters{}, &CaAPIMessages{}, &CaAPITransactions{}, &IsoAPIMessages{})
@@ -52,12 +52,19 @@ func DBsetIndex(db *gorm.DB) *gorm.DB {
 	return nil
 }
 
-// DBsetValue is using for set configuration value on DB
-func DBsetValue(db *gorm.DB) *gorm.DB {
-	result := db.Create(&SystemSettings{Key: "udah", Value: "Bisaaa yeay"})
-	if result.Error != nil {
-		fmt.Printf("failed input to Database %v", result.Error)
-		panic("failed input to database, error")
-	}
-	return result
+// DBsetSettings is using for set configuration value on DB
+func DBsetSettings(db *gorm.DB, val string) (*gorm.DB, string) {
+
+	// lets put model to var
+	// mod1 := SystemSettings{Key: "SETTINGS1", Value: val}
+	// result := db.Create(mod1)
+	// if result.Error != nil {
+	// 	fmt.Printf("failed input to Database %v", result.Error)
+	// 	panic("failed input to database, error")
+	// }
+
+	mod2 := SystemSettings{}
+	db.First(&mod2)
+
+	return nil, mod2.Value
 }

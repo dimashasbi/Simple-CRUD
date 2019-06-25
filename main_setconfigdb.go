@@ -25,7 +25,7 @@ func main() {
 	db := dbsetup.DBInit(&myConfig)
 
 	// put configuration A
-	setvalue.SetValue()
+	setvalue.SetValue(db)
 
 	// create file
 	err := ioutil.WriteFile("filename.txt", []byte("Hello"), 0755)
