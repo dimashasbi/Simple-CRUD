@@ -1,6 +1,6 @@
 package model
 
-// model for Base Application Configuration
+// BaseApplicationConfig model for Configuration Standard
 type BaseApplicationConfig struct {
 	LogFolder   string
 	CaName      string
@@ -9,25 +9,26 @@ type BaseApplicationConfig struct {
 	Database    string
 }
 
-// model for Settings Front Message / Parameter Configuration (url / message / parameter settings)
+// FrontSettingsConfig model for Settings Front Message / Parameter Configuration (url / message / parameter settings)
 type FrontSettingsConfig struct {
 	HTTPListeningPort string
 	HeaderMessage     HeaderHTTPMessage
 }
 
+// HeaderHTTPMessage model for HTTP Message configuration
 type HeaderHTTPMessage struct {
 	ClientID  string
 	PassKey   string
 	SecretKey string
 }
 
-// model for Settings Back Message / Parameter Configuration (url / message / parameter settings)
+// BackSettingsConfig model for Settings Back Message / Parameter Configuration (url / message / parameter settings)
 type BackSettingsConfig struct {
 	URLJavaMPAY string
 	URLJavaSVA  string
 }
 
-// model for Settings Message ISO
+// IsoMessageConfig model for Settings Message ISO
 type IsoMessageConfig struct {
 	BitActive               string
 	PrimaryAccountNumber    string
@@ -40,7 +41,7 @@ type IsoMessageConfig struct {
 	ForwardingInstitutionID string
 }
 
-// model for Settings simple Configuration
+// SimpleConfig model for Settings simple Configuration
 type SimpleConfig struct {
 	Key   string
 	Value string
