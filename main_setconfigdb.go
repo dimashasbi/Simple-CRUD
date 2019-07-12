@@ -2,36 +2,34 @@ package main
 
 import (
 	"M-GateDBConfig/configuration"
-	"M-GateDBConfig/dbsetup"
-	"M-GateDBConfig/setvalue"
-	"fmt"
-	"io/ioutil"
+	"M-GateDBConfig/dbhandler"
+	// "M-GateDBConfig/setvalue"
+	// "fmt"
+	// "io/ioutil"
 
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 // AllModelData that have Global Value
-// type AllModelData struct {
-// 	*configuration.ConfigurationModel
-// 	*dbsetup.InDB
-// }
+type AllModelData struct {
+	*configuration.DBConfigurationModel
+	*dbsetup.InDB
+}
 
 func main() {
 
-	// i want to read file Config here
-	myConfig := configuration.GetConfig()
+	// i want to read file Config here to Connect Database
+	myConfig := configuration.GetDBConfig()
 
-	// migrate DB
-	db := dbsetup.DBInit(&myConfig)
+	// migrate DB First
+	dbsetup.DBInit(&myConfig)
 
-	// put configuration A
-	setvalue.SetValue(db)
+	// open running Server to do Reload Configuration
 
-	// create file
-	err := ioutil.WriteFile("filename.txt", []byte("Hello"), 0755)
+}
+
+func checkErr(err error) {
 	if err != nil {
-		fmt.Printf("Unable to write file: %v", err)
+		panic(err.Error())
 	}
-	defer db.Close()
-	fmt.Print("Input data is success")
 }

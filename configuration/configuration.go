@@ -1,14 +1,14 @@
 package configuration
 
 import (
-	"fmt"
+	// "fmt"
 	"strconv"
 
 	"github.com/spf13/viper"
 )
 
-// ConfigurationModel file for
-type ConfigurationModel struct {
+// DBConfigurationModel file for
+type DBConfigurationModel struct {
 	Host     string
 	Port     int
 	User     string
@@ -16,29 +16,29 @@ type ConfigurationModel struct {
 	Dbname   string
 }
 
-// GetConfig to start get file
-func GetConfig() ConfigurationModel {
+// GetDBConfig to start get file
+func GetDBConfig() DBConfigurationModel {
 	viper.SetConfigType("json")
 	viper.AddConfigPath("configuration/")
 	viper.SetConfigName("config")
 
 	err := viper.ReadInConfig()
-	if err != nil {
-		fmt.Printf("ga bisa bacaaa : %v ", err)
-	}
-	
-	// put to Model
-	dbhost := ConfigurationModel{}
-	dbhost.Host = viper.GetString("host")
-	port, err := strconv.Atoi(viper.GetString("port"))
-	dbhost.Port = port
-	dbhost.User = viper.GetString("user")
-	dbhost.Password = viper.GetString("password")
-	dbhost.Dbname = viper.GetString("dbname")
+	checkErr(err)
 
-	// change data now
-	viper.Set("host", "127.0.0.1")
-	viper.WriteConfig()
+	// put to Model
+	dbhost := DBConfigurationModel{}
+	dbhost.Host = viper.GetString("db.host")
+	port, err := strconv.Atoi(viper.GetString("db.port"))
+	dbhost.Port = port
+	dbhost.User = viper.GetString("db.user")
+	dbhost.Password = viper.GetString("db.password")
+	dbhost.Dbname = viper.GetString("db.dbname")
 
 	return dbhost
+}
+
+func checkErr(err error) {
+	if err != nil {
+		panic(err.Error())
+	}
 }

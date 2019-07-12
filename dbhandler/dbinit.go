@@ -12,7 +12,7 @@ type InDB struct {
 }
 
 // DBInit create connection to database
-func DBInit(data *configuration.ConfigurationModel) *gorm.DB {
+func DBInit(data *configuration.DBConfigurationModel) *gorm.DB {
 
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
 		"password=%s dbname=%s sslmode=disable",
@@ -50,21 +50,4 @@ func DBsetIndex(db *gorm.DB) *gorm.DB {
 	db.Model(&IsoAPIMessages{}).AddIndex("rrn__iso_api", "retrieval_reference_number")
 	db.Model(&IsoAPIMessages{}).AddIndex("terminal_id_iso_api", "card_acceptor_terminal_id")
 	return nil
-}
-
-// DBsetSettings is using for set configuration value on DB
-func DBsetSettings(db *gorm.DB, val string) (*gorm.DB, string) {
-
-	// lets put model to var
-	// mod1 := SystemSettings{Key: "SETTINGS1", Value: val}
-	// result := db.Create(mod1)
-	// if result.Error != nil {
-	// 	fmt.Printf("failed input to Database %v", result.Error)
-	// 	panic("failed input to database, error")
-	// }
-
-	mod2 := SystemSettings{}
-	db.First(&mod2)
-
-	return nil, mod2.Value
 }

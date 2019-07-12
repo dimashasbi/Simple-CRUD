@@ -1,7 +1,7 @@
-package setvalue
+package handler
 
 import (
-	"M-GateDBConfig/dbsetup"
+	"M-GateDBConfig/dbhandler"
 	"M-GateDBConfig/model"
 	"crypto/aes"
 	"crypto/cipher"
@@ -15,6 +15,10 @@ import (
 	"io"
 )
 
+var (
+	key = []byte("MGateAllCAconfig") // should 16 length
+)
+
 // SetValue to input value to DB
 func SetValue(db *gorm.DB) {
 	backsetting := &model.BackSettingsConfig{
@@ -25,7 +29,6 @@ func SetValue(db *gorm.DB) {
 	if err != nil {
 		panic(err)
 	}
-	key := []byte("passwordnyaharus") // should 16
 
 	encryptedval, err := encrypt(key, res1B)
 	if err != nil {
