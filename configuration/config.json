@@ -5,5 +5,9 @@
     "password": "dimskii",
     "port": 5432,
     "user": "hasbi"
+  },
+  "param":{
+    "key": "dimas",
+    "value": "kecee"
   }
 }

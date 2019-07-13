@@ -1,10 +1,9 @@
 package configuration
 
 import (
-	// "fmt"
-	"strconv"
-
+	"M-GateDBConfig/model"
 	"github.com/spf13/viper"
+	"strconv"
 )
 
 // DBConfigurationModel file for
@@ -35,6 +34,23 @@ func GetDBConfig() DBConfigurationModel {
 	dbhost.Dbname = viper.GetString("db.dbname")
 
 	return dbhost
+}
+
+// GetParamValue to get Value from File
+func GetParamValue() *model.SimpleConfig {
+	viper.SetConfigType("json")
+	viper.AddConfigPath("configuration/")
+	viper.SetConfigName("config")
+
+	err := viper.ReadInConfig()
+	checkErr(err)
+
+	// put to Model
+	obj := &model.SimpleConfig{}
+	obj.Key = viper.GetString("param.key")
+	obj.Value = viper.GetString("param.value")
+
+	return obj
 }
 
 func checkErr(err error) {

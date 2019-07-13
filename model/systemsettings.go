@@ -1,16 +1,5 @@
 package model
 
-import (
-	"M-GateDBConfig/dbhandler"
-)
-
-// LogStructure base on DBStructure
-type LogStructure struct {
-	*dbhandler.CaAPIMessages
-	*dbhandler.CaAPITransactions
-	*dbhandler.IsoAPIMessages
-}
-
 // BaseApplicationConfig model for Configuration Standard
 type BaseApplicationConfig struct {
 	LogFolder   string

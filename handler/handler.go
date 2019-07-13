@@ -1,8 +1,8 @@
 package handler
 
 import (
+	"M-GateDBConfig/configuration"
 	"M-GateDBConfig/dbhandler"
-	"M-GateDBConfig/model"
 	"fmt"
 	"github.com/gorilla/mux"
 	"log"
@@ -44,10 +44,7 @@ func (a *HTTPHandler) ReloadParam(w http.ResponseWriter, r *http.Request) {
 // SetParam to input value to DB
 func (a *HTTPHandler) SetParam() {
 
-	simple := &model.SimpleConfig{
-		Key:   "key1",
-		Value: "valuenya11",
-	}
+	simple := configuration.GetParamValue()
 
 	data := &dbhandler.Parameters{
 		Key:   simple.Key,
