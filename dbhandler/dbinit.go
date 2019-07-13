@@ -1,4 +1,4 @@
-package dbsetup
+package dbhandler
 
 import (
 	"M-GateDBConfig/configuration"
@@ -6,20 +6,20 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-// InDB for db structure
-type InDB struct {
+// DBHandler for db structure
+type DBHandler struct {
 	database *gorm.DB
 }
 
 // DBInit create connection to database
-func DBInit(data *configuration.DBConfigurationModel) *gorm.DB {
+func DBInit(data configuration.DBConfigurationModel) *DBHandler {
 
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
 		"password=%s dbname=%s sslmode=disable",
 		data.Host, data.Port, data.User, data.Password, data.Dbname)
 
 	db, err := gorm.Open("postgres", psqlInfo)
-	baseDb := InDB{database: db}
+	baseDb := &DBHandler{database: db}
 	if err != nil {
 		fmt.Printf("failed to connect Database %v", err)
 		panic("failed to connect to database, error")
@@ -34,7 +34,9 @@ func DBInit(data *configuration.DBConfigurationModel) *gorm.DB {
 	}
 	// input index
 	DBsetIndex(baseDb.database)
-	return db
+
+	fmt.Println("DB migrate success")
+	return baseDb
 }
 
 // DBsetIndex for setting Index Database

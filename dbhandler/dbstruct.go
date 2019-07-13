@@ -1,4 +1,4 @@
-package dbsetup
+package dbhandler
 
 import (
 	"time"
