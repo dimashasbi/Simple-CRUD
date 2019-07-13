@@ -3,6 +3,7 @@ package handler
 import (
 	"M-GateDBConfig/configuration"
 	"M-GateDBConfig/dbhandler"
+	"M-GateDBConfig/model"
 	"fmt"
 	"github.com/gorilla/mux"
 	"log"
@@ -46,7 +47,7 @@ func (a *HTTPHandler) SetParam() {
 
 	simple := configuration.GetParamValue()
 
-	data := &dbhandler.Parameters{
+	data := &model.Parameters{
 		Key:   simple.Key,
 		Value: simple.Value,
 	}
@@ -54,15 +55,6 @@ func (a *HTTPHandler) SetParam() {
 	err := a.DBHandler.SetParameter(data)
 	checkErr(err)
 
-	// base64.StdEncoding.EncodeToString(byte)
-	// base64.StdEncoding.DecodeString(string)
-
-	// // Read DB value
-	// decodestring, err := base64.StdEncoding.DecodeString(ans)
-	// checkErr(err)
-
-	// err = decrypt(key, decodestring)
-	// checkErr(err)
 }
 
 // Run the app on it's router
@@ -76,3 +68,13 @@ func checkErr(err error) {
 		// panic(err.Error())
 	}
 }
+
+// base64.StdEncoding.EncodeToString(byte)
+// base64.StdEncoding.DecodeString(string)
+
+// // Read DB value
+// decodestring, err := base64.StdEncoding.DecodeString(ans)
+// checkErr(err)
+
+// err = decrypt(key, decodestring)
+// checkErr(err)

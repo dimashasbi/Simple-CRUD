@@ -1,9 +1,8 @@
-package dbhandler
+package model
 
 import (
-	"time"
-
 	"github.com/jinzhu/gorm/dialects/postgres"
+	"time"
 )
 
 //// Application Configuration

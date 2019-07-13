@@ -1,6 +1,6 @@
 package model
 
-// YOU SHOULD NOT MAKE AN IMPORT IN MODEL!!!!!!!
+// YOU SHOULD NOT MAKE AN IMPORT INTERNAL PACKAGE IN MODEL!!!!!!!
 
 // BaseApplicationConfig model for Configuration Standard
 type BaseApplicationConfig struct {

@@ -1,6 +1,7 @@
 package dbhandler
 
 import (
+	"M-GateDBConfig/model"
 	"fmt"
 )
 
@@ -20,7 +21,7 @@ import (
 // }
 
 // SetParameter is using for set configuration value on DB
-func (db *DBHandler) SetParameter(data *Parameters) error {
+func (db *DBHandler) SetParameter(data *model.Parameters) error {
 	// put model to Database
 	result := db.database.Create(&data)
 	if result.Error != nil {
@@ -35,7 +36,7 @@ func (db *DBHandler) SetParameter(data *Parameters) error {
 // SetSystemSettings is using for set configuration value on DB
 func (db *DBHandler) SetSystemSettings(key string, val string) error {
 	// put model to Database
-	mod1 := SystemSettings{Key: key, Value: val}
+	mod1 := model.SystemSettings{Key: key, Value: val}
 	result := db.database.Create(mod1)
 	if result.Error != nil {
 		errStr := "Error input to System Settings Table"
@@ -48,7 +49,7 @@ func (db *DBHandler) SetSystemSettings(key string, val string) error {
 // SetCaAPIMessages is using for set configuration value on DB
 func (db *DBHandler) SetCaAPIMessages(key string, val string) error {
 	// put model to Database
-	mod1 := SystemSettings{Key: key, Value: val}
+	mod1 := model.SystemSettings{Key: key, Value: val}
 	result := db.database.Create(mod1)
 	if result.Error != nil {
 		errStr := "Error input to CaAPIMessages Table"
