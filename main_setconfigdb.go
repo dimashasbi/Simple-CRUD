@@ -10,9 +10,9 @@ import (
 
 // AllModelData that have Global Value
 type AllModelData struct {
-	dbConfig    *configuration.DBConfigurationModel
-	DBHandler   *dbhandler.DBHandler
-	HTTPHandler *handler.HTTPHandler
+	dbConfig   *configuration.DBConfigurationModel
+	DBHandler  *dbhandler.DBHandler
+	AppHandler *handler.AppHandler
 }
 
 func main() {
@@ -25,13 +25,13 @@ func main() {
 	db := dbhandler.DBInit(dbConfig)
 
 	// open running Server to do Reload Configuration
-	handler := &handler.HTTPHandler{}
+	handler := &handler.AppHandler{}
 	handler.Initialize(db)
 	handler.Run(":4911")
 
 	myCoreVariable.dbConfig = &dbConfig
 	myCoreVariable.DBHandler = db
-	myCoreVariable.HTTPHandler = handler
+	myCoreVariable.AppHandler = handler
 }
 
 func checkErr(err error) {

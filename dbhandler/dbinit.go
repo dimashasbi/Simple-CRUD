@@ -7,11 +7,6 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-// DBHandler for db structure
-type DBHandler struct {
-	database *gorm.DB
-}
-
 // DBInit create connection to database
 func DBInit(data configuration.DBConfigurationModel) *DBHandler {
 
