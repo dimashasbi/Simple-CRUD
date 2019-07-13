@@ -1,5 +1,7 @@
 package model
 
+// YOU SHOULD NOT MAKE AN IMPORT IN MODEL!!!!!!!
+
 // BaseApplicationConfig model for Configuration Standard
 type BaseApplicationConfig struct {
 	LogFolder   string
