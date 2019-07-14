@@ -7,7 +7,7 @@ import (
 )
 
 // SetParam to input value to DB
-func (a *AppHandler) SetParam(DB dbhandler.SetDBValue) {
+func (a *AppHandler) SetParam(DB dbhandler.SetDBValueInterface) error {
 
 	simple := configuration.GetParamValue()
 
@@ -18,5 +18,5 @@ func (a *AppHandler) SetParam(DB dbhandler.SetDBValue) {
 
 	err := DB.SetParameter(data)
 	checkErr(err)
-
+	return err
 }

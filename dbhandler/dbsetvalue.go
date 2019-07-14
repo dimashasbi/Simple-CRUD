@@ -12,13 +12,13 @@ import (
 // 	GetDBValue(db *gorm.DB, num int) (string, error)
 // }
 
-// SetDBValue interface
-type SetDBValue interface {
+// SetDBValueInterface interface
+type SetDBValueInterface interface {
 	SetParameter(data *model.Parameters) error
-	// SetSystemSettings(key string, val string) error
-	// SetCaAPIMessages(mod *model.CaAPIMessages) error
-	// SetCaAPITransactions(mod *model.CaAPITransactions) error
-	// SetIsoAPIMessages(mod *model.IsoAPIMessages) error
+	SetSystemSettings(data *model.SystemSettings) error
+	SetCaAPIMessages(mod *model.CaAPIMessages) error
+	SetCaAPITransactions(mod *model.CaAPITransactions) error
+	SetIsoAPIMessages(mod *model.IsoAPIMessages) error
 }
 
 // DBHandler for db structure
@@ -33,37 +33,63 @@ func (db *DBHandler) SetParameter(data *model.Parameters) error {
 	if result.Error != nil {
 		errStr := "Error input to Parameter Table \n"
 		fmt.Printf(errStr, result.Error)
+		panic(result.Error)
+		// return result.Error
+	}
+	return nil
+}
+
+// SetSystemSettings is using for set configuration value on DB
+func (db *DBHandler) SetSystemSettings(data *model.SystemSettings) error {
+	// put model to Database
+	result := db.database.Create(&data)
+	if result.Error != nil {
+		errStr := "Error input to SystemSettings Table \n"
+		fmt.Printf(errStr, result.Error)
 		// panic(result.Error)
 		return result.Error
 	}
 	return nil
 }
 
-// // SetSystemSettings is using for set configuration value on DB
-// func (db *DBHandler) SetSystemSettings(key string, val string) error {
-// 	// put model to Database
-// 	mod1 := model.SystemSettings{Key: key, Value: val}
-// 	result := db.database.Create(mod1)
-// 	if result.Error != nil {
-// 		errStr := "Error input to System Settings Table"
-// 		fmt.Printf(errStr)
-// 		return result.Error
-// 	}
-// 	return nil
-// }
+// SetCaAPIMessages is using for set configuration value on DB
+func (db *DBHandler) SetCaAPIMessages(data *model.CaAPIMessages) error {
+	// put model to Database
+	result := db.database.Create(&data)
+	if result.Error != nil {
+		errStr := "Error input to CaAPIMessages Table \n"
+		fmt.Printf(errStr, result.Error)
+		// panic(result.Error)
+		return result.Error
+	}
+	return nil
+}
 
-// // SetCaAPIMessages is using for set configuration value on DB
-// func (db *DBHandler) SetCaAPIMessages(key string, val string) error {
-// 	// put model to Database
-// 	mod1 := model.SystemSettings{Key: key, Value: val}
-// 	result := db.database.Create(mod1)
-// 	if result.Error != nil {
-// 		errStr := "Error input to CaAPIMessages Table"
-// 		fmt.Printf(errStr)
-// 		return result.Error
-// 	}
-// 	return nil
-// }
+// SetCaAPITransactions is using for set configuration value on DB
+func (db *DBHandler) SetCaAPITransactions(data *model.CaAPITransactions) error {
+	// put model to Database
+	result := db.database.Create(&data)
+	if result.Error != nil {
+		errStr := "Error input to CaAPITransactions Table \n"
+		fmt.Printf(errStr, result.Error)
+		// panic(result.Error)
+		return result.Error
+	}
+	return nil
+}
+
+// SetIsoAPIMessages is using for set configuration value on DB
+func (db *DBHandler) SetIsoAPIMessages(data *model.IsoAPIMessages) error {
+	// put model to Database
+	result := db.database.Create(&data)
+	if result.Error != nil {
+		errStr := "Error input to IsoAPIMessages Table \n"
+		fmt.Printf(errStr, result.Error)
+		// panic(result.Error)
+		return result.Error
+	}
+	return nil
+}
 
 func checkErr(err error) {
 	if err != nil {

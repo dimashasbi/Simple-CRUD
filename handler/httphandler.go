@@ -12,7 +12,7 @@ import (
 type AppHandler struct {
 	Router      *mux.Router
 	DBHandler   *dbhandler.DBHandler
-	DBInterface dbhandler.SetDBValue
+	DBInterface dbhandler.SetDBValueInterface
 }
 
 // Initialize Application
@@ -49,7 +49,7 @@ func (a *AppHandler) Run(host string) {
 func checkErr(err error) {
 	if err != nil {
 		fmt.Printf("Error in handler")
-		// panic(err.Error())
+		panic(err.Error())
 	}
 }
 

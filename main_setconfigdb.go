@@ -19,8 +19,8 @@ func main() {
 
 	myCoreVariable := &AllModelData{}
 	// i want to read file Config here to Connect Database
-	dbConfig := configuration.GetDBConfig()
-
+	dbConfig, err := configuration.GetDBConfig()
+	checkErr(err)
 	// migrate DB First
 	db := dbhandler.DBInit(dbConfig)
 

@@ -6,8 +6,42 @@
     "port": 5432,
     "user": "hasbi"
   },
-  "param":{
+  "SimpleConfig":{
     "key": "dimas12",
     "value": "keceehhss"
+  },
+  "isoMessage":{
+    "BitActive":"",
+    "PrimaryAccountNumber":"",
+    "MerchantType":"",
+    "PosEntryMode":"",
+    "AcquiringInstitutionID":"",
+    "TerminalID":"",
+    "CardAcceptorID" :"",
+    "CardAcceptorName" :"",
+    "ForwardingInstitutionID" :""
+  },
+  "BaseApplicationConfig":
+  {
+    "CaName" :"",
+    "LogFolder" :"",
+    "ActivateSVA" :"",
+    "PlnDirect" :""
+  },
+  "FrontSettingsConfig":
+  {
+    "HTTPListeningPort" :"",
+    "HeaderMessage" :""
+  },
+  "HeaderHTTPMessage":
+  {
+    "ClientID" :"",
+    "PassKey" :"",
+    "SecretKey" :""
+  },
+  "BackSettingsConfig":
+  {
+    "URLJavaMPAY" :"",
+    "URLJavaSVA" :""
   }
 }
