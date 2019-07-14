@@ -34,10 +34,14 @@ func (a *AppHandler) GET(path string, f func(w http.ResponseWriter, r *http.Requ
 
 // ReloadParam for router for GET method
 func (a *AppHandler) ReloadParam(w http.ResponseWriter, r *http.Request) {
-	a.SetParam(a.DBHandler)
+	err := a.SetParam(a.DBHandler)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("OK"))
+	if err != nil {
+		w.Write([]byte(err.Error()))
+	} else {
+		w.Write([]byte("OK"))
+	}
 	fmt.Println("Input Data is Done")
 }
 

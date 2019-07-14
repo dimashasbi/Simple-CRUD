@@ -60,8 +60,8 @@ func GetParamValue() model.SimpleConfig {
 
 	// put to Model
 	obj := model.SimpleConfig{}
-	obj.Key = viper.GetString("param.key")
-	obj.Value = viper.GetString("param.value")
+	obj.Key = viper.GetString("SimpleConfig.key")
+	obj.Value = viper.GetString("SimpleConfig.value")
 
 	return obj
 }

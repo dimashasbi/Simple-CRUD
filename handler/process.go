@@ -17,6 +17,6 @@ func (a *AppHandler) SetParam(DB dbhandler.SetDBValueInterface) error {
 	}
 
 	err := DB.SetParameter(data)
-	checkErr(err)
+
 	return err
 }

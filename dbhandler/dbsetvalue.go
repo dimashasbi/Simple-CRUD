@@ -4,6 +4,7 @@ import (
 	"M-GateDBConfig/model"
 	"fmt"
 	"github.com/jinzhu/gorm"
+	"github.com/pkg/errors"
 )
 
 // // DBHandler use for interface every object use this package
@@ -33,8 +34,7 @@ func (db *DBHandler) SetParameter(data *model.Parameters) error {
 	if result.Error != nil {
 		errStr := "Error input to Parameter Table \n"
 		fmt.Printf(errStr, result.Error)
-		panic(result.Error)
-		// return result.Error
+		return errors.Wrapf(result.Error, errStr, "Apaa yaa")
 	}
 	return nil
 }
