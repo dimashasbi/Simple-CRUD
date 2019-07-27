@@ -1,4 +1,4 @@
-package configuration
+package fileconfiguration
 
 import (
 	"M-GateDBConfig/model"
@@ -29,45 +29,42 @@ type DBConfigurationModel struct {
 // GetDBConfig to start get file
 func GetDBConfig() (DBConfigurationModel, error) {
 	viper.SetConfigType("json")
-	viper.AddConfigPath("configuration/")
+	viper.AddConfigPath("fileconfiguration/")
 	viper.SetConfigName("config")
+
+	dbhost := DBConfigurationModel{}
 
 	err := viper.ReadInConfig()
 	if err != nil {
-		panic(err.Error())
+		return dbhost, err
 	}
 
 	// put to Model
-	dbhost := DBConfigurationModel{}
 	dbhost.Host = viper.GetString("db.host")
 	port, err := strconv.Atoi(viper.GetString("db.port"))
 	dbhost.Port = port
 	dbhost.User = viper.GetString("db.user")
 	dbhost.Password = viper.GetString("db.password")
 	dbhost.Dbname = viper.GetString("db.dbname")
-
 	return dbhost, nil
 }
 
-// GetParamValue to get Value from File
-func GetParamValue() model.SimpleConfig {
+// GetSimpleConfig to get Value from File
+func GetSimpleConfig() (model.SimpleConfig, error) {
 	viper.SetConfigType("json")
 	viper.AddConfigPath("configuration/")
 	viper.SetConfigName("config")
 
+	obj := model.SimpleConfig{}
+
 	err := viper.ReadInConfig()
-	checkErr(err)
+	if err != nil {
+		return obj, err
+	}
 
 	// put to Model
-	obj := model.SimpleConfig{}
 	obj.Key = viper.GetString("SimpleConfig.key")
 	obj.Value = viper.GetString("SimpleConfig.value")
 
-	return obj
-}
-
-func checkErr(err error) {
-	if err != nil {
-		panic(err.Error())
-	}
+	return obj, nil
 }

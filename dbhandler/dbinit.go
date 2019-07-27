@@ -1,14 +1,14 @@
 package dbhandler
 
 import (
-	"M-GateDBConfig/configuration"
+	"M-GateDBConfig/fileconfiguration"
 	"M-GateDBConfig/model"
 	"fmt"
 	"github.com/jinzhu/gorm"
 )
 
 // DBInit create connection to database
-func DBInit(data configuration.DBConfigurationModel) *DBHandler {
+func DBInit(data fileconfiguration.DBConfigurationModel) *DBHandler {
 
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
 		"password=%s dbname=%s sslmode=disable",

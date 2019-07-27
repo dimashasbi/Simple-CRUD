@@ -38,8 +38,11 @@ func (a *AppHandler) ReloadParam(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(err.Error()))
+		panic(err)
 	} else {
+		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("OK"))
 	}
 	fmt.Println("Input Data is Done")
