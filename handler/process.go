@@ -7,11 +7,11 @@ import (
 )
 
 // SetParam to input value to DB
-func (a *AppHandler) SetParam(DB dbhandler.SetDBValueInterface) error {
+func (a *AppHandler) SetParam(DB dbhandler.ISetDBValue) (bool, error) {
 
 	simple, errfc := fileconfiguration.GetSimpleConfig()
 	if errfc != nil {
-		return errfc
+		return false, errfc
 	}
 
 	data := &model.Parameters{
@@ -21,5 +21,5 @@ func (a *AppHandler) SetParam(DB dbhandler.SetDBValueInterface) error {
 
 	err := DB.SetParameter(data)
 
-	return err
+	return true, err
 }

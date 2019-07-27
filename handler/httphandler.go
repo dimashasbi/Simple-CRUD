@@ -2,6 +2,7 @@ package handler
 
 import (
 	"M-GateDBConfig/dbhandler"
+	"M-GateDBConfig/respon"
 	"fmt"
 	"github.com/gorilla/mux"
 	"log"
@@ -10,9 +11,11 @@ import (
 
 // AppHandler using for make a Route
 type AppHandler struct {
-	Router      *mux.Router
-	DBHandler   *dbhandler.DBHandler
-	DBInterface dbhandler.SetDBValueInterface
+	Router    *mux.Router
+	DBHandler *dbhandler.DBHandler
+	IDB       dbhandler.ISetDBValue
+	IRespon   respon.IRespon
+	StRespon  respon.StRespon
 }
 
 // Initialize Application
@@ -34,17 +37,11 @@ func (a *AppHandler) GET(path string, f func(w http.ResponseWriter, r *http.Requ
 
 // ReloadParam for router for GET method
 func (a *AppHandler) ReloadParam(w http.ResponseWriter, r *http.Request) {
-	err := a.SetParam(a.DBHandler)
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(err.Error()))
-		panic(err)
-	} else {
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("OK"))
-	}
+	ok, err := a.SetParam(a.DBHandler)
+	resp := a.StRespon
+	resp.Err = err
+	resp.Success = ok
+	respon.DefaultRespon(w, resp)
 	fmt.Println("Input Data is Done")
 }
 
@@ -59,13 +56,3 @@ func checkErr(err error) {
 		panic(err.Error())
 	}
 }
-
-// base64.StdEncoding.EncodeToString(byte)
-// base64.StdEncoding.DecodeString(string)
-
-// // Read DB value
-// decodestring, err := base64.StdEncoding.DecodeString(ans)
-// checkErr(err)
-
-// err = decrypt(key, decodestring)
-// checkErr(err)

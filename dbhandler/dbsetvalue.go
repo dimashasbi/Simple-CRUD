@@ -13,8 +13,8 @@ import (
 // 	GetDBValue(db *gorm.DB, num int) (string, error)
 // }
 
-// SetDBValueInterface interface
-type SetDBValueInterface interface {
+// ISetDBValue interface
+type ISetDBValue interface {
 	SetParameter(data *model.Parameters) error
 	SetSystemSettings(data *model.SystemSettings) error
 	SetCaAPIMessages(mod *model.CaAPIMessages) error
