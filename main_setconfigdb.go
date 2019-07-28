@@ -24,8 +24,8 @@ func main() {
 	base, err1 := fileconfiguration.GetBaseAppConfig()
 	dbConfig, err2 := fileconfiguration.GetDBConfig()
 	err3 := mylog.InitLog(base)
-	checkErr(err1, dbConfig)
-	checkErr(err2, dbConfig)
+	checkErr(err1, nil)
+	checkErr(err2, nil)
 	checkErr(err3, "Init Log")
 	// Connect and Migrate DB
 	db, err4 := dbhandler.DBInit(dbConfig)
@@ -47,8 +47,5 @@ func main() {
 func checkErr(err error, data interface{}) {
 	if err != nil {
 		mylog.FatalError(err)
-		// panic(err)
-
 	}
-	mylog.Debug("Main Application ", data)
 }

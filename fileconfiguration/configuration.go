@@ -2,10 +2,9 @@ package fileconfiguration
 
 import (
 	"M-GateDBConfig/model"
+	"M-GateDBConfig/mylog"
 	"github.com/spf13/viper"
 	"strconv"
-
-	"github.com/pkg/errors"
 )
 
 // GetFileConfigInterface interface
@@ -21,6 +20,7 @@ type GetFileConfigInterface interface {
 
 // GetDBConfig to start get file
 func GetDBConfig() (model.DBConfigurationModel, error) {
+	mylog.MnDebug("Load DB Configuration ")
 	viper.SetConfigType("json")
 	viper.AddConfigPath("./")
 	viper.SetConfigName("appconfig")
@@ -29,9 +29,10 @@ func GetDBConfig() (model.DBConfigurationModel, error) {
 
 	err := viper.ReadInConfig()
 	if err != nil {
-		format := "Error Read File Configuration \n"
-		sol := "Check Your Configuration File Path"
-		return dbhost, errors.Wrapf(err, format, sol)
+		return dbhost, err
+		// format := "Error Read File Configuration \n"
+		// sol := "Check Your Configuration File Path"
+		// return dbhost, errors.Wrapf(err, format, sol)
 	}
 
 	// put to Model
@@ -46,6 +47,7 @@ func GetDBConfig() (model.DBConfigurationModel, error) {
 
 // GetBaseAppConfig use for get Base Application Configuration
 func GetBaseAppConfig() (model.BaseApplicationConfig, error) {
+	mylog.MnDebug("Load BaseApp Config")
 	viper.SetConfigType("json")
 	viper.AddConfigPath("./")
 	viper.SetConfigName("appconfig")
@@ -68,6 +70,7 @@ func GetBaseAppConfig() (model.BaseApplicationConfig, error) {
 
 // GetSimpleConfig to get Value from File
 func GetSimpleConfig() (model.SimpleConfig, error) {
+	mylog.MnDebug("Load Simple Config")
 	viper.SetConfigType("json")
 	viper.AddConfigPath("configuration/")
 	viper.SetConfigName("setdbvalue")

@@ -20,9 +20,9 @@ func DBInit(data model.DBConfigurationModel) (*DBHandler, error) {
 		fmt.Printf("failed to connect Database %v", err)
 		// panic("failed to connect to database, error")
 		return baseDb, err
+	} else {
+		mylog.MnDebug("DB Connect")
 	}
-
-	fmt.Println("DB Success")
 	// migrate table and colomn (setting increment, null, size)
 	MigrateResult := db.AutoMigrate(&model.SystemSettings{}, &model.Parameters{},
 		&model.CaAPIMessages{}, &model.CaAPITransactions{}, &model.IsoAPIMessages{})
@@ -32,8 +32,7 @@ func DBInit(data model.DBConfigurationModel) (*DBHandler, error) {
 	}
 	// input index
 	DBsetIndex(baseDb.database)
-	mylog.Debug("DB MIGRATE", nil)
-	fmt.Println("DB migrate success")
+	mylog.MnDebug("DB Migrate Success")
 	return baseDb, nil
 }
 

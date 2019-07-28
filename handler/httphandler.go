@@ -39,7 +39,8 @@ func (a *AppHandler) GET(path string, f func(w http.ResponseWriter, r *http.Requ
 
 // Run the app on it's router
 func (a *AppHandler) Run(port string) {
-	mylog.Debug(fmt.Sprintf("Running in Port : %v", port), "Application Now is Running")
+	ports := fmt.Sprintf("Running in Port %v", port)
+	mylog.MnDebug(ports)
 	mylog.FatalError(http.ListenAndServe(port, a.Router))
 }
 

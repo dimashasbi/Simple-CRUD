@@ -7,14 +7,24 @@
         "enable": true,
         "level": "DEBUG",
         "filename":"logs/debug.log",
-        "category": "MiniDebug",			
-        "pattern": "[%D %T] %M"	
+        "category": "MiniDebug",		
+        "pattern": "[%D %T] %M",
+        "rotate": true,				
+        "maxsize": "500M",
+        "maxlines": "10K",
+        "daily": true,
+        "sanitize": true
     },{
         "enable": true,
         "level": "DEBUG",
         "filename":"logs/debug.log",
         "category": "FullDebug",			
-        "pattern": "[%D %T] [%C] [%L] (%S) %M"
+        "pattern": "[%D %T] [%C] [%L] (%S) %M",
+        "rotate": true,				
+        "maxsize": "500M",
+        "maxlines": "10K",
+        "daily": true,
+        "sanitize": true
     },{
         "enable": true,
         "level": "ERROR",

@@ -2,6 +2,7 @@ package mylog
 
 import (
 	"M-GateDBConfig/model"
+	"fmt"
 	log "github.com/jeanphorn/log4go"
 	"os"
 )
@@ -32,12 +33,13 @@ func InitLog(mod model.BaseApplicationConfig) error {
 	return nil
 }
 
-// MnDebug for Mini Debug
+// MnDebug for Debugging in Simple Format
 func MnDebug(msg string) {
 	log.LOGGER("MiniDebug").Debug(msg)
+	fmt.Println(msg)
 }
 
-// FlDebug log Full Debug
+// FlDebug for Debugggin in Full Format
 func FlDebug(msg string, data interface{}) {
 	log.LOGGER("FullDebug").Debug(msg, data)
 }
