@@ -32,10 +32,13 @@ func InitLog(mod model.BaseApplicationConfig) error {
 	return nil
 }
 
-// Debug log
-func Debug(msg string, data interface{}) {
-	// log.Debug(msg)
+// MnDebug for Mini Debug
+func MnDebug(msg string) {
 	log.LOGGER("MiniDebug").Debug(msg)
+}
+
+// FlDebug log Full Debug
+func FlDebug(msg string, data interface{}) {
 	log.LOGGER("FullDebug").Debug(msg, data)
 }
 
