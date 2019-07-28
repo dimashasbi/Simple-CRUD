@@ -1,0 +1,30 @@
+{
+    "console": {
+        "enable": true,
+        "level": "FINE"		
+    },
+    "files": [{
+        "enable": true,
+        "level": "DEBUG",
+        "filename":"logs/debug.log",
+        "category": "MiniDebug",			
+        "pattern": "[%D %T] %M"	
+    },{
+        "enable": true,
+        "level": "DEBUG",
+        "filename":"logs/debug.log",
+        "category": "FullDebug",			
+        "pattern": "[%D %T] [%C] [%L] (%S) %M"
+    },{
+        "enable": true,
+        "level": "ERROR",
+        "filename":"logs/error/errors.log",
+        "category": "Error",			
+        "pattern": "[%D %T] [%C] [%L] (%S) %M",
+        "rotate": true,				
+        "maxsize": "500M",
+        "maxlines": "10K",
+        "daily": true,
+        "sanitize": true
+    }]
+}

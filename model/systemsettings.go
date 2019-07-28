@@ -2,6 +2,15 @@ package model
 
 // YOU SHOULD NOT MAKE AN IMPORT INTERNAL PACKAGE IN MODEL!!!!!!!
 
+// DBConfigurationModel file for Connecting DB
+type DBConfigurationModel struct {
+	Host     string
+	Port     int
+	User     string
+	Password string
+	Dbname   string
+}
+
 // BaseApplicationConfig model for Configuration Standard
 type BaseApplicationConfig struct {
 	LogFolder   string

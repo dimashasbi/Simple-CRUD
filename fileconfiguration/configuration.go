@@ -4,39 +4,34 @@ import (
 	"M-GateDBConfig/model"
 	"github.com/spf13/viper"
 	"strconv"
+
+	"github.com/pkg/errors"
 )
 
 // GetFileConfigInterface interface
 type GetFileConfigInterface interface {
-	GetDBConfig() (DBConfigurationModel, error)
+	GetDBConfig() (model.DBConfigurationModel, error)
 	GetSimpleConfig() (model.SimpleConfig, error)
 	GetIsoMessageConfig() (model.IsoMessageConfig, error)
-	GetBaseAppConfig() (model.BaseApplicationConfig, error)
+	GetBaseAppConfig() (model.BaseApplicationConfig, model.DBConfigurationModel, error)
 	GetFrontSettingConfig() (model.FrontSettingsConfig, error)
 	GetHeaderHTTPMessage() (model.HeaderHTTPMessage, error)
 	GetBackSettingConfig() (model.BackSettingsConfig, error)
 }
 
-// DBConfigurationModel file for
-type DBConfigurationModel struct {
-	Host     string
-	Port     int
-	User     string
-	Password string
-	Dbname   string
-}
-
 // GetDBConfig to start get file
-func GetDBConfig() (DBConfigurationModel, error) {
+func GetDBConfig() (model.DBConfigurationModel, error) {
 	viper.SetConfigType("json")
-	viper.AddConfigPath("fileconfiguration/")
-	viper.SetConfigName("config")
+	viper.AddConfigPath("./")
+	viper.SetConfigName("appconfig")
 
-	dbhost := DBConfigurationModel{}
+	dbhost := model.DBConfigurationModel{}
 
 	err := viper.ReadInConfig()
 	if err != nil {
-		return dbhost, err
+		format := "Error Read File Configuration \n"
+		sol := "Check Your Configuration File Path"
+		return dbhost, errors.Wrapf(err, format, sol)
 	}
 
 	// put to Model
@@ -49,11 +44,33 @@ func GetDBConfig() (DBConfigurationModel, error) {
 	return dbhost, nil
 }
 
+// GetBaseAppConfig use for get Base Application Configuration
+func GetBaseAppConfig() (model.BaseApplicationConfig, error) {
+	viper.SetConfigType("json")
+	viper.AddConfigPath("./")
+	viper.SetConfigName("appconfig")
+
+	obj := model.BaseApplicationConfig{}
+
+	err := viper.ReadInConfig()
+	if err != nil {
+		return obj, err
+	}
+
+	// put to Model
+	obj.CaName = viper.GetString("BaseApplicationConfig.CaName")
+	obj.LogFolder = viper.GetString("BaseApplicationConfig.LogFolder")
+	obj.ActivateSVA = viper.GetString("BaseApplicationConfig.ActivateSVA")
+	obj.PlnDirect = viper.GetString("BaseApplicationConfig.PlnDirect")
+
+	return obj, nil
+}
+
 // GetSimpleConfig to get Value from File
 func GetSimpleConfig() (model.SimpleConfig, error) {
 	viper.SetConfigType("json")
 	viper.AddConfigPath("configuration/")
-	viper.SetConfigName("config")
+	viper.SetConfigName("setdbvalue")
 
 	obj := model.SimpleConfig{}
 

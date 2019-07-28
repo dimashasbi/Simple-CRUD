@@ -1,14 +1,14 @@
 package dbhandler
 
 import (
-	"M-GateDBConfig/fileconfiguration"
 	"M-GateDBConfig/model"
+	"M-GateDBConfig/mylog"
 	"fmt"
 	"github.com/jinzhu/gorm"
 )
 
 // DBInit create connection to database
-func DBInit(data fileconfiguration.DBConfigurationModel) *DBHandler {
+func DBInit(data model.DBConfigurationModel) (*DBHandler, error) {
 
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
 		"password=%s dbname=%s sslmode=disable",
@@ -18,7 +18,8 @@ func DBInit(data fileconfiguration.DBConfigurationModel) *DBHandler {
 	baseDb := &DBHandler{database: db}
 	if err != nil {
 		fmt.Printf("failed to connect Database %v", err)
-		panic("failed to connect to database, error")
+		// panic("failed to connect to database, error")
+		return baseDb, err
 	}
 
 	fmt.Println("DB Success")
@@ -31,9 +32,9 @@ func DBInit(data fileconfiguration.DBConfigurationModel) *DBHandler {
 	}
 	// input index
 	DBsetIndex(baseDb.database)
-
+	mylog.Debug("DB MIGRATE", nil)
 	fmt.Println("DB migrate success")
-	return baseDb
+	return baseDb, nil
 }
 
 // DBsetIndex for setting Index Database

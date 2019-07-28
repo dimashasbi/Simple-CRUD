@@ -81,6 +81,12 @@
 			"revisionTime": "2019-06-11T12:32:18Z"
 		},
 		{
+			"checksumSHA1": "u6KwQe9YHFvqNC556SN0polXKFk=",
+			"path": "github.com/jeanphorn/log4go",
+			"revision": "7dbb8deb94686ee4c744290168390869ac014312",
+			"revisionTime": "2019-05-26T08:24:29Z"
+		},
+		{
 			"checksumSHA1": "HuNuSv4SB9SuSJ5BWrBYhHqhqic=",
 			"path": "github.com/jinzhu/gorm",
 			"revision": "b7156195f7f3415f97c20abbd6aff894b847fee8",
@@ -141,6 +147,12 @@
 			"revisionTime": "2019-05-30T03:55:49Z"
 		},
 		{
+			"checksumSHA1": "CUU7ZZtxuc1mpbM8XKrSTNiy/yM=",
+			"path": "github.com/pkg/errors",
+			"revision": "27936f6d90f9c8e1145f11ed52ffffbfdb9e0af7",
+			"revisionTime": "2019-02-27T00:00:51Z"
+		},
+		{
 			"checksumSHA1": "c8iTmaJDIg/GXEaTwpGPSEuB7gI=",
 			"path": "github.com/spf13/afero",
 			"revision": "588a75ec4f32903aa5e39a2619ba6a4631e28424",
@@ -187,6 +199,12 @@
 			"path": "github.com/tkanos/gonfig",
 			"revision": "896f3d81fadfe082262467a1c22fd43278806a02",
 			"revisionTime": "2018-11-12T18:52:42Z"
+		},
+		{
+			"checksumSHA1": "NaoYWMJoqvHk9x3vUddGfovHUH8=",
+			"path": "github.com/toolkits/file",
+			"revision": "a5b3c5147e07f934d9f9d00b901a20b2529f1a57",
+			"revisionTime": "2016-03-25T03:37:39Z"
 		},
 		{
 			"checksumSHA1": "R9iBDY+aPnT+8pyRcqGjXq5QixA=",
