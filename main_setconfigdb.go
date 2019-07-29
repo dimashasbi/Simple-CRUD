@@ -27,12 +27,13 @@ func main() {
 	checkErr(err1, nil)
 	checkErr(err2, nil)
 	checkErr(err3, "Init Log")
+
 	// Connect and Migrate DB
 	db, err4 := dbhandler.DBInit(dbConfig)
 	checkErr(err4, db)
 
-	handler := &handler.AppHandler{}
 	// open running Server to do Reload Configuration
+	handler := &handler.AppHandler{}
 	handler.InitializeServer(db)
 
 	myCoreVariable.dbConfig = &dbConfig

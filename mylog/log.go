@@ -44,20 +44,13 @@ func FlDebug(msg string, data interface{}) {
 	log.LOGGER("FullDebug").Debug(msg, data)
 }
 
-// Error For Standard Error
-func Error(e error) {
-
+// Error For Standard Error, Messaging Error, Fail Query, etc
+func Error(e error, data interface{}) {
+	log.LOGGER("Error").Error(e, data)
 }
 
-// FatalError if Problem is so hard.
+// FatalError for (DB connection lose, Load Configuration Failed, Listening Port Failed, Dependency failed)
 func FatalError(e error) {
-	log.Error(e)
-	// log.LOGGER("Error").Error(e)
-
-	// matiin koneksi DB
-
-	// matiin koneksi Websocket
-
-	// matiin listen server
+	log.LOGGER("FtlError").Error(e)
 	panic(e)
 }

@@ -17,8 +17,7 @@ func DBInit(data model.DBConfigurationModel) (*DBHandler, error) {
 	db, err := gorm.Open("postgres", psqlInfo)
 	baseDb := &DBHandler{database: db}
 	if err != nil {
-		fmt.Printf("failed to connect Database %v", err)
-		// panic("failed to connect to database, error")
+		mylog.FatalError(err)
 		return baseDb, err
 	} else {
 		mylog.MnDebug("DB Connect")
