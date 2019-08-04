@@ -1,9 +1,20 @@
 {
     "console": {
         "enable": true,
-        "level": "FINE"		
+        "level": "FINEST"
     },
     "files": [{
+        "enable": true,
+        "level": "INFO",
+        "filename":"logs/message.log",
+        "category": "INFO",		
+        "pattern": "[%D %T] [%C] %M",
+        "rotate": true,				
+        "maxsize": "500M",
+        "maxlines": "10K",
+        "daily": true,
+        "sanitize": true
+    },{
         "enable": true,
         "level": "DEBUG",
         "filename":"logs/debug.log",

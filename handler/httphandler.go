@@ -41,8 +41,8 @@ func (a *AppHandler) GET(path string, f func(w http.ResponseWriter, r *http.Requ
 func (a *AppHandler) Run(port string) {
 	ports := fmt.Sprintf("Running in Port %v", port)
 	mylog.MnDebug(ports)
-	
-	mylog.FatalError(http.ListenAndServe(ports, a.Router),)
+
+	mylog.FatalError(http.ListenAndServe(port, a.Router))
 }
 
 // ReloadParam for router for GET method

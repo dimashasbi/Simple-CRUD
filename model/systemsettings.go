@@ -18,6 +18,7 @@ type BaseApplicationConfig struct {
 	ActivateSVA string
 	PlnDirect   string
 	Database    string
+	RunningPort string
 }
 
 // FrontSettingsConfig model for Settings Front Message / Parameter Configuration (url / message / parameter settings)

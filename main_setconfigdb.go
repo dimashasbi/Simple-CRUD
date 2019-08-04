@@ -6,6 +6,7 @@ import (
 	"M-GateDBConfig/handler"
 	"M-GateDBConfig/model"
 	"M-GateDBConfig/mylog"
+	"fmt"
 
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
@@ -19,7 +20,7 @@ type AllModelData struct {
 }
 
 func main() {
-	myCoreVariable := &AllModelData{}
+	// myCoreVariable := &AllModelData{}
 	// Load Configuration
 	base, err1 := fileconfiguration.GetBaseAppConfig()
 	dbConfig, err2 := fileconfiguration.GetDBConfig()
@@ -35,13 +36,7 @@ func main() {
 	// open running Server to do Reload Configuration
 	handler := &handler.AppHandler{}
 	handler.InitializeServer(db)
-
-	myCoreVariable.dbConfig = &dbConfig
-	myCoreVariable.DBHandler = db
-	myCoreVariable.AppHandler = handler
-	myCoreVariable.ModAppConfig = &base
-
-	handler.Run(":4911")
+	handler.Run(fmt.Sprintf(":" + base.RunningPort))
 
 }
 

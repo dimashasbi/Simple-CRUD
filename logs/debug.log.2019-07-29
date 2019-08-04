@@ -1,0 +1,72 @@
+[2019/07/28 14:53:02 +07] [DEFAULT] [DEBG] (M-GateDBConfig/mylog.Debug:26) Debugging
+[2019/07/28 14:53:02 +07] [DEFAULT] [DEBG] (M-GateDBConfig/mylog.Debug:26) Debugging
+[2019/07/28 14:53:02 +07] [DEFAULT] [DEBG] (M-GateDBConfig/mylog.Debug:26) Debugging
+[2019/07/28 14:54:44 +07] [DEFAULT] [DEBG] (M-GateDBConfig/mylog.Debug:26) Debugging%!(EXTRA string=Main Application )
+[2019/07/28 14:54:45 +07] [DEFAULT] [DEBG] (M-GateDBConfig/mylog.Debug:26) Debugging%!(EXTRA string=DB MIGRATE)
+[2019/07/28 14:54:45 +07] [DEFAULT] [DEBG] (M-GateDBConfig/mylog.Debug:26) Debugging%!(EXTRA string=Main Application )
+[2019/07/28 14:55:59 +07] [DEFAULT] [DEBG] (M-GateDBConfig/mylog.Debug:26) Main Application 
+[2019/07/28 14:56:00 +07] [DEFAULT] [DEBG] (M-GateDBConfig/mylog.Debug:26) DB MIGRATE
+[2019/07/28 14:56:00 +07] [DEFAULT] [DEBG] (M-GateDBConfig/mylog.Debug:26) Main Application 
+[2019/07/28 17:57:51 +07] (M-GateDBConfig/mylog.Debug:32) Main Application 
+[2019/07/28 17:57:51 +07] (M-GateDBConfig/mylog.Debug:32) DB MIGRATE
+[2019/07/28 17:57:51 +07] (M-GateDBConfig/mylog.Debug:32) Main Application 
+[2019/07/28 18:23:59 +07] (M-GateDBConfig/mylog.Debug:32) Main Application 
+[2019/07/28 18:23:59 +07] (M-GateDBConfig/mylog.Debug:32) DB MIGRATE
+[2019/07/28 18:23:59 +07] (M-GateDBConfig/mylog.Debug:32) Main Application 
+[2019/07/28 23:08:22 +07] (M-GateDBConfig/mylog.Debug:37) Main Application 
+[2019/07/28 23:08:22 +07] (M-GateDBConfig/mylog.Debug:37) Main Application 
+[2019/07/28 23:08:22 +07] (M-GateDBConfig/mylog.Debug:37) Main Application 
+[2019/07/28 23:08:22 +07] (M-GateDBConfig/mylog.Debug:37) DB MIGRATE
+[2019/07/28 23:08:22 +07] (M-GateDBConfig/mylog.Debug:37) Main Application 
+[2019/07/28 23:23:56 +07] (M-GateDBConfig/mylog.Debug:37) Main Application 
+[2019/07/28 23:23:56 +07] (M-GateDBConfig/mylog.Debug:37) Main Application 
+[2019/07/28 23:23:56 +07] (M-GateDBConfig/mylog.Debug:37) Main Application 
+[2019/07/28 23:23:56 +07] (M-GateDBConfig/mylog.Debug:37) DB MIGRATE
+[2019/07/28 23:23:56 +07] (M-GateDBConfig/mylog.Debug:37) Main Application 
+[2019/07/28 23:35:40 +07] (M-GateDBConfig/mylog.Debug:38) Main Application %!(EXTRA model.DBConfigurationModel={127.0.0.1 5432 hasbi dimskii hasbidatabase})
+[2019/07/28 23:35:40 +07] (M-GateDBConfig/mylog.Debug:38) Main Application %!(EXTRA model.DBConfigurationModel={127.0.0.1 5432 hasbi dimskii hasbidatabase})
+[2019/07/28 23:35:40 +07] (M-GateDBConfig/mylog.Debug:38) Main Application %!(EXTRA string=Init Log)
+[2019/07/28 23:35:40 +07] (M-GateDBConfig/mylog.Debug:38) DB MIGRATE%!(EXTRA <nil>)
+[2019/07/28 23:35:40 +07] (M-GateDBConfig/mylog.Debug:38) Main Application %!(EXTRA *dbhandler.DBHandler=&{0xc0001e65b0})
+[2019/07/28 23:43:36 +07] (M-GateDBConfig/mylog.Debug:38) Main Application %!(EXTRA model.DBConfigurationModel={127.0.0.1 5432 hasbi dimskii hasbidatabase})
+[2019/07/28 23:43:36 +07] (M-GateDBConfig/mylog.Debug:38) Main Application %!(EXTRA model.DBConfigurationModel={127.0.0.1 5432 hasbi dimskii hasbidatabase})
+[2019/07/28 23:43:36 +07] (M-GateDBConfig/mylog.Debug:38) Main Application %!(EXTRA string=Init Log)
+[2019/07/28 23:43:36 +07] (M-GateDBConfig/mylog.Debug:38) DB MIGRATE%!(EXTRA <nil>)
+[2019/07/28 23:43:36 +07] (M-GateDBConfig/mylog.Debug:38) Main Application %!(EXTRA *dbhandler.DBHandler=&{0xc0001e45b0})
+[2019/07/28 23:44:46 +07] (M-GateDBConfig/mylog.Debug:38) Main Application 
+[2019/07/28 23:44:46 +07] (M-GateDBConfig/mylog.Debug:38) Main Application 
+[2019/07/28 23:44:46 +07] (M-GateDBConfig/mylog.Debug:38) Main Application 
+[2019/07/28 23:44:46 +07] (M-GateDBConfig/mylog.Debug:38) DB MIGRATE
+[2019/07/28 23:44:46 +07] (M-GateDBConfig/mylog.Debug:38) Main Application 
+[2019/07/28 23:50:36 +07] [FullDebug] [DEBG] (M-GateDBConfig/mylog.Debug:39) Main Application 
+[2019/07/28 23:50:36 +07] [FullDebug] [DEBG] (M-GateDBConfig/mylog.Debug:39) Main Application 
+[2019/07/28 23:50:36 +07] [FullDebug] [DEBG] (M-GateDBConfig/mylog.Debug:39) Main Application 
+[2019/07/28 23:50:36 +07] Main Application 
+[2019/07/28 23:50:36 +07] Main Application 
+[2019/07/28 23:50:36 +07] Main Application 
+[2019/07/28 23:50:36 +07] [FullDebug] [DEBG] (M-GateDBConfig/mylog.Debug:39) DB MIGRATE
+[2019/07/28 23:50:36 +07] DB MIGRATE
+[2019/07/28 23:50:36 +07] [FullDebug] [DEBG] (M-GateDBConfig/mylog.Debug:39) Main Application 
+[2019/07/28 23:50:36 +07] Main Application 
+[2019/07/28 23:54:33 +07] [FullDebug] [DEBG] (M-GateDBConfig/mylog.Debug:39) Main Application 
+[2019/07/28 23:54:33 +07] [FullDebug] [DEBG] (M-GateDBConfig/mylog.Debug:39) Main Application 
+[2019/07/28 23:54:33 +07] [FullDebug] [DEBG] (M-GateDBConfig/mylog.Debug:39) Main Application 
+[2019/07/28 23:54:33 +07] Main Application 
+[2019/07/28 23:54:33 +07] Main Application 
+[2019/07/28 23:54:33 +07] Main Application 
+[2019/07/28 23:54:33 +07] [FullDebug] [DEBG] (M-GateDBConfig/mylog.Debug:39) DB MIGRATE
+[2019/07/28 23:54:33 +07] [FullDebug] [DEBG] (M-GateDBConfig/mylog.Debug:39) Main Application 
+[2019/07/28 23:54:33 +07] DB MIGRATE
+[2019/07/28 23:54:33 +07] Main Application 
+[2019/07/28 23:54:33 +07] [FullDebug] [DEBG] (M-GateDBConfig/mylog.Debug:39) Running in Port : :4911
+[2019/07/28 23:54:33 +07] Running in Port : :4911
+[2019/07/29 00:27:25 +07] Main Application
+[2019/07/29 00:27:25 +07] Main Application
+[2019/07/29 00:27:25 +07] Main Application
+[2019/07/29 00:27:25 +07] DB MIGRATE
+[2019/07/29 00:27:25 +07] Main Application
+[2019/07/29 00:27:25 +07] Running in Port :4911
+[2019/07/29 00:53:00 +07] DB Migrate Success
+[2019/07/29 00:53:00 +07] Running in Port :4911
+[2019/07/29 00:54:01 +07] DB Migrate Success
+[2019/07/29 00:54:01 +07] Running in Port :4911

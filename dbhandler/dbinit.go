@@ -26,8 +26,7 @@ func DBInit(data model.DBConfigurationModel) (*DBHandler, error) {
 	MigrateResult := db.AutoMigrate(&model.SystemSettings{}, &model.Parameters{},
 		&model.CaAPIMessages{}, &model.CaAPITransactions{}, &model.IsoAPIMessages{})
 	if MigrateResult.Error != nil {
-		fmt.Printf("failed Migrate Database %v", MigrateResult.Error)
-		panic("failed  Migrate Database, error")
+		mylog.FatalError(MigrateResult.Error)
 	}
 	// input index
 	DBsetIndex(baseDb.database)
