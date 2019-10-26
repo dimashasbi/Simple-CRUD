@@ -1,47 +1,51 @@
 package main
 
 import (
-	"M-GateDBConfig/dbhandler"
-	"M-GateDBConfig/fileconfiguration"
-	"M-GateDBConfig/handler"
+	"M-GateDBConfig/adapter"
+	"M-GateDBConfig/app/fileconfig"
 	"M-GateDBConfig/model"
-	"M-GateDBConfig/mylog"
+
 	"fmt"
+
+	"M-GateDBConfig/provider/dbhandler"
 
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 // AllModelData that have Global Value
 type AllModelData struct {
-	dbConfig     *model.DBConfigurationModel
-	DBHandler    *dbhandler.DBHandler
-	AppHandler   *handler.AppHandler
-	ModAppConfig *model.BaseApplicationConfig
+	dbConfig  *model.DBConfigurationModel
+	DBHandler *dbhandler.DBHandler
+	Adapter   *adapter.AppHandler
+	// AppConfig *model.BaseApplicationConfig
 }
 
 func main() {
 	// myCoreVariable := &AllModelData{}
 	// Load Configuration
-	base, err1 := fileconfiguration.GetBaseAppConfig()
-	dbConfig, err2 := fileconfiguration.GetDBConfig()
-	err3 := mylog.InitLog(base)
-	checkErr(err1, nil)
-	checkErr(err2, nil)
-	checkErr(err3, "Init Log")
 
+	// base, _ := fileconfig.GetBaseAppConfig()
+	dbConfig, err := fileconfig.GetDBConfig()
+	if err != nil {
+		panic(fmt.Sprintf("Error Get DB Config, %v", err))
+	}
 	// Connect and Migrate DB
-	db, err4 := dbhandler.DBInit(dbConfig)
-	checkErr(err4, db)
+	db, err := dbhandler.DBInit(dbConfig)
+	if err != nil {
+		panic(fmt.Sprintf("Error Init DB, %v", err))
+	}
+
+	adapter := &adapter.AppHandler{}
 
 	// open running Server to do Reload Configuration
-	handler := &handler.AppHandler{}
-	handler.InitializeServer(db)
-	handler.Run(fmt.Sprintf(":" + base.RunningPort))
 
-}
+	adapter.InitializeServer(db)
 
-func checkErr(err error, data interface{}) {
-	if err != nil {
-		mylog.FatalError(err)
-	}
+	myCoreVariable.dbConfig = &dbConfig
+	myCoreVariable.DBHandler = db
+	myCoreVariable.Adapter = adapter
+	// myCoreVariable.AppConfig = &base
+
+	adapter.Run(":4911")
+
 }

@@ -1,8 +1,9 @@
 package model
 
 import (
-	"github.com/jinzhu/gorm/dialects/postgres"
 	"time"
+
+	"github.com/jinzhu/gorm/dialects/postgres"
 )
 
 //// Application Configuration
