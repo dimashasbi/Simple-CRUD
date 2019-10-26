@@ -2,7 +2,6 @@ package engine
 
 import (
 	"M-GateDBConfig/model"
-	"context"
 )
 
 type (
@@ -10,7 +9,7 @@ type (
 	// data storage provider needs to implement to get
 	// and store greetings
 	ParameterRepository interface {
-		Insert(c context.Context, m *model.Parameters) error
+		Insert(m *model.Parameters) error
 		// List() error
 		// Select() error
 		// Update() error

@@ -2,14 +2,19 @@ package engine
 
 import (
 	"M-GateDBConfig/model"
-	"context"
 )
 
-func (p *parameter) Add(c context.Context, m *SimpleConfigReq) *SimpleConfigResp {
+func (p *parameter) Add(m *SimpleConfigReq) *SimpleConfigResp {
 	param := model.NewParameters(m.Key, m.Value)
-	err := p.repository.Insert(c, param)
+	err := p.repository.Insert(param)
+	if err != nil {
+		return &SimpleConfigResp{
+			ID:    string(m.ID),
+			Error: err.Error(),
+		}
+	}
 	return &SimpleConfigResp{
-		ID:    string(param.ID),
-		Error: err.Error(),
+		ID:    string(m.ID),
+		Error: "",
 	}
 }
