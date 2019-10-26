@@ -7,7 +7,7 @@ import (
 
 	"fmt"
 
-	"M-GateDBConfig/provider/dbhandler"
+	"M-GateDBConfig/provider/postgres"
 
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
@@ -15,13 +15,13 @@ import (
 // AllModelData that have Global Value
 type AllModelData struct {
 	dbConfig  *model.DBConfigurationModel
-	DBHandler *dbhandler.DBHandler
+	DBHandler *postgres.DBHandler
 	Adapter   *adapter.AppHandler
 	// AppConfig *model.BaseApplicationConfig
 }
 
 func main() {
-	// myCoreVariable := &AllModelData{}
+	myCoreVariable := &AllModelData{}
 	// Load Configuration
 
 	// base, _ := fileconfig.GetBaseAppConfig()
@@ -30,7 +30,7 @@ func main() {
 		panic(fmt.Sprintf("Error Get DB Config, %v", err))
 	}
 	// Connect and Migrate DB
-	db, err := dbhandler.DBInit(dbConfig)
+	db, err := postgres.DBInit(dbConfig)
 	if err != nil {
 		panic(fmt.Sprintf("Error Init DB, %v", err))
 	}

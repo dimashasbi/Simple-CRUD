@@ -1,9 +1,7 @@
 package adapter
 
 import (
-	"M-GateDBConfig/engine"
-	"M-GateDBConfig/provider/dbhandler"
-	"encoding/json"
+	"M-GateDBConfig/provider/postgres"
 
 	"github.com/gorilla/mux"
 
@@ -13,23 +11,22 @@ import (
 // AppHandler using for make a Route
 type AppHandler struct {
 	Router    *mux.Router
-	DBHandler *dbhandler.DBHandler
-	Engine    *engine.IDatabase
+	DBHandler *postgres.DBHandler
 }
 
 // InitializeServer Application
-func (a *AppHandler) InitializeServer(db *dbhandler.DBHandler) {
+func (a *AppHandler) InitializeServer(db *postgres.DBHandler) {
 	a.Router = mux.NewRouter()
 	a.DBHandler = db
-	a.IDB = a.DBHandler
+	// a.IDB = a.DBHandler
 	a.SetURL()
 
 }
 
 // SetURL for reloading
 func (a *AppHandler) SetURL() {
-	a.GET("/params", a.GetParam)
-	a.POST("/params", a.SetSimpleConfig)
+	// a.GET("/params", a.GetParam)
+	// a.POST("/params", a.SetSimpleConfig)
 }
 
 // GET wraps the router for GET method
@@ -48,39 +45,39 @@ func (a *AppHandler) Run(port string) {
 }
 
 // GetParam for router for GET method
-func (a *AppHandler) GetParam(w http.ResponseWriter, r *http.Request) {
-	val, err := engine.GetParam(a.Engine)
-	if err != nil {
-		out := ErrRespon{
-			Error: err.Error(),
-		}
-		hasil, _ := json.Marshal(out)
-		DefaultRespon(w, hasil)
-		return
-	}
-	hasil, _ := json.Marshal(val)
-	w.Header().Set("Content-Type", "application/json")
+// func (a *AppHandler) GetParam(w http.ResponseWriter, r *http.Request) {
+// 	// val, err := engine.GetParam(a.Engine)
+// 	// if err != nil {
+// 	// 	out := ErrRespon{
+// 	// 		Error: err.Error(),
+// 	// 	}
+// 		hasil, _ := json.Marshal(out)
+// 		DefaultRespon(w, hasil)
+// 		return
+// 	}
+// 	hasil, _ := json.Marshal(val)
+// 	w.Header().Set("Content-Type", "application/json")
 
-	DefaultRespon(w, hasil)
-	return
-}
+// 	DefaultRespon(w, hasil)
+// 	return
+// }
 
 // SetSimpleConfig for router for POST method
-func (a *AppHandler) SetSimpleConfig(w http.ResponseWriter, r *http.Request) {
-	M := json.Decoder
+// func (a *AppHandler) SetSimpleConfig(w http.ResponseWriter, r *http.Request) {
+// 	M := json.Decoder
 
-	val, err := engine.SetSimpleConfig(a.Engine)
-	if err != nil {
-		out := ErrRespon{
-			Error: err.Error(),
-		}
-		hasil, _ := json.Marshal(out)
-		DefaultRespon(w, hasil)
-		return
-	}
-	hasil, _ := json.Marshal(val)
-	w.Header().Set("Content-Type", "application/json")
+// 	val, err := engine.SetSimpleConfig(a.Engine)
+// 	if err != nil {
+// 		out := ErrRespon{
+// 			Error: err.Error(),
+// 		}
+// 		hasil, _ := json.Marshal(out)
+// 		DefaultRespon(w, hasil)
+// 		return
+// 	}
+// 	hasil, _ := json.Marshal(val)
+// 	w.Header().Set("Content-Type", "application/json")
 
-	DefaultRespon(w, hasil)
-	return
-}
+// 	DefaultRespon(w, hasil)
+// 	return
+// }
