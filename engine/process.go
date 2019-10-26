@@ -1,19 +1,19 @@
 package engine
 
 import (
+	"net/http"
 	"M-GateDBConfig/model"
 	"M-GateDBConfig/provider/dbhandler"
 	"fmt"
-	"net/http"
 )
 
-// IDatabase
+// Idatabase
 type IDatabase struct {
-	IDB dbhandler.IDBGetSet
+	IDB   dbhandler.IDBGetSet
 }
 
-// ParameterResp for output show Table Parameter
-type ParameterResp struct {
+// Parameter for output show Table Parameter
+type Parameter struct {
 	Param []model.Parameters `json:"Parameter"`
 }
 
@@ -31,8 +31,10 @@ func GetParam(IDB dbhandler.IDBGetSet) (Parameter, error) {
 }
 
 // SetSimpleConfig to input value to DB
-func (db IDatabase) SetSimpleConfig(m model.SimpleConfig) (Parameter, error) {
+func (db IDatabase)SetSimpleConfig(m model.SimpleConfig) (Parameter, error) {
 	mod := model.SimpleConfig{}
+
+	
 
 	data, err := IDB.GetParameter()
 	if err != nil {
