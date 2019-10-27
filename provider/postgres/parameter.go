@@ -40,10 +40,10 @@ func (p parameterRepository) List() ([]*model.Parameters, error) {
 	return mod, nil
 }
 
-// func (p parameterRepository) Select(m *model.Parameters) ([]*model.Parameters, error) {
+func (p parameterRepository) Select(m *model.Parameters) ([]*model.Parameters, error) {
 
-// }
+}
 
-// func (p parameterRepository) Update(m *model.Parameters) error {
+func (p parameterRepository) Update(m *model.Parameters) error {
 
-// }
+}

@@ -28,8 +28,6 @@ func (a *parameter) SetParam(w http.ResponseWriter, r *http.Request) {
 
 // GetAllParam for router for POST method
 func (a *parameter) GetAllParam(w http.ResponseWriter, r *http.Request) {
-	mod := engine.ListParameterResp{}
-	json.NewDecoder(r.Body).Decode(&mod)
 	resp := a.List()
 
 	hasil, _ := json.Marshal(resp)
