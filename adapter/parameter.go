@@ -13,11 +13,24 @@ type (
 )
 
 // SetSimpleConfig for router for POST method
-func (a *parameter) SetSimpleConfig(w http.ResponseWriter, r *http.Request) {
+func (a *parameter) SetParam(w http.ResponseWriter, r *http.Request) {
 
-	mod := engine.SimpleConfigReq{}
+	mod := engine.AddConfigReq{}
 	json.NewDecoder(r.Body).Decode(&mod)
 	resp := a.Add(&mod)
+
+	hasil, _ := json.Marshal(resp)
+	w.Header().Set("Content-Type", "application/json")
+
+	DefaultRespon(w, hasil)
+	return
+}
+
+// GetAllParam for router for POST method
+func (a *parameter) GetAllParam(w http.ResponseWriter, r *http.Request) {
+	mod := engine.ListParameterResp{}
+	json.NewDecoder(r.Body).Decode(&mod)
+	resp := a.List()
 
 	hasil, _ := json.Marshal(resp)
 	w.Header().Set("Content-Type", "application/json")

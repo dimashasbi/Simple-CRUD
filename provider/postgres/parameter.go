@@ -28,3 +28,22 @@ func (p parameterRepository) Insert(m *model.Parameters) error {
 	}
 	return nil
 }
+
+func (p parameterRepository) List() ([]*model.Parameters, error) {
+	mod := []*model.Parameters{}
+	err := p.session.Find(&mod)
+	if err != nil {
+		errStr := "Error Find Parameter Table \n"
+		fmt.Printf(errStr, err.Error)
+		return mod, errors.Wrapf(err.Error, errStr)
+	}
+	return mod, nil
+}
+
+// func (p parameterRepository) Select(m *model.Parameters) ([]*model.Parameters, error) {
+
+// }
+
+// func (p parameterRepository) Update(m *model.Parameters) error {
+
+// }

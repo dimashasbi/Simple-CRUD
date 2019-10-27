@@ -10,9 +10,9 @@ type (
 	// and store greetings
 	ParameterRepository interface {
 		Insert(m *model.Parameters) error
-		// List() error
-		// Select() error
-		// Update() error
+		List() ([]*model.Parameters, error)
+		Select(m *model.Parameters) ([]*model.Parameters, error)
+		Update(m *model.Parameters) error
 	}
 
 	// StorageFactory is the interface that a storage

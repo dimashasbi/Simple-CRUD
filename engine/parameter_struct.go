@@ -1,14 +1,8 @@
 package engine
 
 type (
-	// SimpleConfigReq for Request Input
-	SimpleConfigReq struct {
-		ID    string
-		Key   string
-		Value string
-	}
 
-	// FrontSettingConfigResp for Response Front Setting
+	// FrontSettingConfigResp for Response Front Setting put in System Settings
 	FrontSettingConfigResp struct {
 		ID        string
 		ClientID  string
@@ -16,21 +10,15 @@ type (
 		SecretKey string
 	}
 
-	// SimpleConfigResp for Response Front Simple Config
-	SimpleConfigResp struct {
-		ID    string
-		Error string
+	// HeaderHTTPMessageReq for Response Header HTTP put in System Settings
+	HeaderHTTPMessageReq struct {
+		ID        string
+		ClientID  string
+		SecretKey string
 	}
 
-	// HeaderHTTPMessageResp for Response Header HTTP
-	HeaderHTTPMessageResp struct {
-		ID          string
-		URLJavaMPAY string
-		URLJavaSVA  string
-	}
-
-	// BackSettingsConfigResp for Response Back Setting
-	BackSettingsConfigResp struct {
+	// BackSettingsConfigReq for Response Back Setting put in System Settings
+	BackSettingsConfigReq struct {
 		ID          string
 		URLJavaMPAY string
 		URLJavaSVA  string

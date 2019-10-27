@@ -1,8 +1,31 @@
 package engine
 
-func (p *parameter) List() *SimpleConfigResp {
-	// q := NewQuery("greeting").Order("date", Descending).Slice(0, r.Count)
-	return &SimpleConfigResp{
-		// Greetings: g.repository.List(c, q),
+import (
+	"M-GateDBConfig/model"
+)
+
+type (
+	// ListParameterReq for Request
+	ListParameterReq struct {
+		Count int
+	}
+	// ListParameterResp for Respon
+	ListParameterResp struct {
+		ParameterList []*model.Parameters
+		Error         string
+	}
+)
+
+func (p *parameter) List() *ListParameterResp {
+	hasil, err := p.repository.List()
+	if err != nil {
+		return &ListParameterResp{
+			ParameterList: nil,
+			Error:         err.Error(),
+		}
+	}
+	return &ListParameterResp{
+		ParameterList: hasil,
+		Error:         "",
 	}
 }

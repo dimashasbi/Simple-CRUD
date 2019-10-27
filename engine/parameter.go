@@ -3,8 +3,8 @@ package engine
 type (
 	// Parameter is the interface for interactor
 	Parameter interface {
-		Add(m *SimpleConfigReq) *SimpleConfigResp
-		// List(c context.Context, r *ListGreetingsRequest) *ListGreetingsResponse
+		Add(m *AddConfigReq) *AddConfigResp
+		List() *ListParameterResp
 		// parameter.Select()
 	}
 

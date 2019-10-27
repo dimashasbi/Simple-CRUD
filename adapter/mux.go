@@ -26,7 +26,7 @@ func (a *Handler) InitializeServer(f engine.EngineFactory) {
 
 // SetURL for reloading
 func (a *Handler) SetURL() {
-	a.POST("/simple", a.SetSimpleConfig)
+	a.POST("/AddParam", a.SetParam)
 }
 
 // GET wraps the router for GET method
@@ -40,8 +40,13 @@ func (a *Handler) POST(path string, f func(w http.ResponseWriter, r *http.Reques
 }
 
 // SetSimpleConfig for  Parameter Mux
-func (a *Handler) SetSimpleConfig(w http.ResponseWriter, r *http.Request) {
-	a.muxParameter.SetSimpleConfig(w, r)
+func (a *Handler) SetParam(w http.ResponseWriter, r *http.Request) {
+	a.muxParameter.SetParam(w, r)
+}
+
+// SetSimpleConfig for  Parameter Mux
+func (a *Handler) GetAllParam(w http.ResponseWriter, r *http.Request) {
+	a.muxParameter.GetAllParam(w, r)
 }
 
 // Run the app on it's router
