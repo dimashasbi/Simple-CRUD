@@ -34,6 +34,8 @@ func NewStorage(data model.DBConfigurationModel) engine.StorageFactory {
 
 	// input index
 	dbsetIndex(db)
+
+	// done
 	fmt.Println("Database Init Success")
 	return &storageFactory{db}
 
@@ -45,8 +47,8 @@ func (c *storageFactory) NewParameterRepository() engine.ParameterRepository {
 
 // dbsetIndex to Set Index
 func dbsetIndex(db *gorm.DB) {
-	db.Model(&model.Parameters{}).AddIndex("key_param", "key")
-	db.Model(&model.Registry{}).AddIndex("key_reg", "key")
+	// db.Model(&model.Parameters{}).AddIndex("key_param", "key")
+	// db.Model(&model.Registry{}).AddIndex("key_reg", "key")
 	// db.Model(&model.CaAPITransactions{}).AddIndex("id_ca_api", "id")
 	// db.Model(&model.CaAPITransactions{}).AddIndex("request_id_ca_api", "request_id")
 	// db.Model(&model.CaAPITransactions{}).AddIndex("auth_key_ca_api", "auth_key")

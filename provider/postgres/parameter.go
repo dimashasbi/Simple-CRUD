@@ -3,7 +3,6 @@ package postgres
 import (
 	"M-GateDBConfig/engine"
 	"M-GateDBConfig/model"
-	"fmt"
 
 	"github.com/jinzhu/gorm"
 	"github.com/pkg/errors"
@@ -22,28 +21,28 @@ func newParameterRepository(db *gorm.DB) engine.ParameterRepository {
 func (p parameterRepository) Insert(m *model.Parameters) error {
 	result := p.session.Create(&m)
 	if result.Error != nil {
-		errStr := "Error input to Parameter Table \n"
-		fmt.Printf(errStr, result.Error)
-		return errors.Wrapf(result.Error, errStr)
+		return errors.Errorf("Error Input Parameter : %v", result.Error)
 	}
 	return nil
 }
 
 func (p parameterRepository) List() ([]*model.Parameters, error) {
 	mod := []*model.Parameters{}
-	err := p.session.Find(&mod)
-	if err != nil {
-		errStr := "Error Find Parameter Table \n"
-		fmt.Printf(errStr, err.Error)
-		return mod, errors.Wrapf(err.Error, errStr)
+	result := p.session.Find(&mod)
+	if result.Error != nil {
+		return mod, errors.Errorf("Error Find Parameter Table : %v", result.Error)
 	}
 	return mod, nil
 }
 
-func (p parameterRepository) Select(m *model.Parameters) ([]*model.Parameters, error) {
-
-}
-
 func (p parameterRepository) Update(m *model.Parameters) error {
-
+	result := p.session.Model(&m).Where("KEY = ?", m.Key).Update("VALUE", m.Value)
+	if result.Error != nil {
+		return errors.Errorf("Error Update Parameter : %v", result.Error)
+	}
+	return nil
 }
+
+// func (p parameterRepository) Select(m *model.Parameters) ([]*model.Parameters, error) {
+
+// }

@@ -11,7 +11,7 @@ type (
 	ParameterRepository interface {
 		Insert(m *model.Parameters) error
 		List() ([]*model.Parameters, error)
-		Select(m *model.Parameters) ([]*model.Parameters, error)
+		// Select(m *model.Parameters) ([]*model.Parameters, error)
 		Update(m *model.Parameters) error
 	}
 

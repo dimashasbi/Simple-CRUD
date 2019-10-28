@@ -7,7 +7,7 @@ import (
 // Registry is model for database configuration system
 type Registry struct {
 	ID    uint   `gorm:"primary_key"`
-	Key   string `gorm:"size:40"`
+	Key   string `gorm:"size:40;index:key_registry;unique"`
 	Value string `gorm:"size:2000"`
 	Date  time.Time
 }

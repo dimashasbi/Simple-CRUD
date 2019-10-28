@@ -4,10 +4,10 @@ import "time"
 
 // Parameters for key need to showing in Database
 type Parameters struct {
-	ID    int    `gorm:"primary_key"`
-	Key   string `gorm:"size:60"`
-	Value string `gorm:"size:300"`
-	Date  time.Time
+	ID    int       `gorm:"primary_key"`
+	Key   string    `gorm:"unique;size:60;index:key_param"`
+	Value string    `gorm:"size:300"`
+	Date  time.Time `json:"-"`
 }
 
 // NewParameters create new Parameters

@@ -6,45 +6,44 @@ import (
 )
 
 type (
-	// AddConfigReq for Request Input
-	AddConfigReq struct {
+	// UpdParamReq struct Request
+	UpdParamReq struct {
 		ID    string
 		Key   *string
 		Value *string
 	}
 
-	// AddConfigResp for Response Front Simple Config
-	AddConfigResp struct {
+	// UpdParamResp struct Response
+	UpdParamResp struct {
 		ID    string
 		Error string
 	}
 )
 
-func (p *parameter) Add(m *AddConfigReq) *AddConfigResp {
-
-	check := checkTagAdd(m)
+func (p *parameter) Update(m *UpdParamReq) *UpdParamResp {
+	check := checkTagUpd(m)
 	if check != "" {
-		return &AddConfigResp{
+		return &UpdParamResp{
 			ID:    m.ID,
 			Error: check,
 		}
 	}
 	param := model.NewParameters(*m.Key, *m.Value)
-	err := p.repository.Insert(param)
+	err := p.repository.Update(param)
 	if err != nil {
 		fmt.Printf("%+v", err)
-		return &AddConfigResp{
+		return &UpdParamResp{
 			ID:    string(m.ID),
-			Error: "Error input to Parameter Table",
+			Error: "Error Update to Parameter Table",
 		}
 	}
-	return &AddConfigResp{
+	return &UpdParamResp{
 		ID:    string(m.ID),
 		Error: "",
 	}
 }
 
-func checkTagAdd(m *AddConfigReq) string {
+func checkTagUpd(m *UpdParamReq) string {
 
 	if m.Key == nil || *m.Key == "" {
 		return "Tag Key is missing or null "

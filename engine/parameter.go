@@ -5,7 +5,7 @@ type (
 	Parameter interface {
 		Add(m *AddConfigReq) *AddConfigResp
 		List() *ListParameterResp
-		// parameter.Select()
+		Update(m *UpdParamReq) *UpdParamResp
 	}
 
 	parameter struct {

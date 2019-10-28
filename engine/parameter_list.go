@@ -2,6 +2,7 @@ package engine
 
 import (
 	"M-GateDBConfig/model"
+	"fmt"
 )
 
 type (
@@ -19,9 +20,9 @@ type (
 func (p *parameter) List() *ListParameterResp {
 	hasil, err := p.repository.List()
 	if err != nil {
+		fmt.Printf("%+v", err)
 		return &ListParameterResp{
-			ParameterList: nil,
-			Error:         err.Error(),
+			Error: "Error Find in Parameter Table",
 		}
 	}
 	return &ListParameterResp{
