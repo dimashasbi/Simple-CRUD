@@ -3,9 +3,10 @@ package engine
 type (
 	// Parameter is the interface for interactor
 	Parameter interface {
-		Add(m *AddConfigReq) *AddConfigResp
+		Add(m *AddParamReq) *AddParamResp
 		List() *ListParameterResp
 		Update(m *UpdParamReq) *UpdParamResp
+		Remove(m *RmvParameterReq) *RmvParameterResp
 	}
 
 	parameter struct {
