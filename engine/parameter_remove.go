@@ -27,7 +27,8 @@ func (p *parameter) Remove(m *RmvParameterReq) *RmvParameterResp {
 			Error: check,
 		}
 	}
-
+	param := model.NewParameters(*m.Key, "")
+	err := p.repository.Remove(param)
 	if err != nil {
 		fmt.Printf("%+v", err)
 		return &RmvParameterResp{
@@ -46,8 +47,5 @@ func checkTagRmv(m *RmvParameterReq) string {
 		return "Tag Key is missing or null "
 	}
 
-	if m.Value == nil {
-		return "Tag Value is missing or null "
-	}
 	return ""
 }

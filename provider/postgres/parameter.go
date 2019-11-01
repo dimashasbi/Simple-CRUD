@@ -43,6 +43,18 @@ func (p parameterRepository) Update(m *model.Parameters) error {
 	return nil
 }
 
-// func (p parameterRepository) Select(m *model.Parameters) ([]*model.Parameters, error) {
+func (p parameterRepository) Remove(m *model.Parameters) error {
+	result := p.session.Where("KEY = ?", m.Key).Delete(&m)
+	if result.Error != nil {
+		return errors.Errorf("Error Delete a Parameter : %v", result.Error)
+	}
+	return nil
+}
 
-// }
+func (p parameterRepository) Select(m *model.Parameters) (*model.Parameters, error) {
+	result := p.session.Where("KEY = ?", m.Key).First(&m)
+	if result.Error != nil {
+		return m, errors.Errorf("Error Select a Parameter : %v", result.Error)
+	}
+	return m, nil
+}

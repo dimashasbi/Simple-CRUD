@@ -29,6 +29,8 @@ func (a *Handler) SetURL() {
 	a.POST("/addparam", a.SetParam)
 	a.POST("/allparam", a.GetAllParam)
 	a.POST("/updparam", a.UpdateParam)
+	a.POST("/rmvparam", a.RemoveParam)
+	a.POST("/selparam", a.SelectParam)
 }
 
 // GET wraps the router for GET method
@@ -51,10 +53,19 @@ func (a *Handler) GetAllParam(w http.ResponseWriter, r *http.Request) {
 	a.muxParameter.GetAllParam(w, r)
 }
 
-
 // UpdateParam for  Parameter Mux
 func (a *Handler) UpdateParam(w http.ResponseWriter, r *http.Request) {
 	a.muxParameter.UpdateParam(w, r)
+}
+
+// RemoveParam for  Parameter Mux
+func (a *Handler) RemoveParam(w http.ResponseWriter, r *http.Request) {
+	a.muxParameter.RemoveParam(w, r)
+}
+
+// SelectParam for  Parameter Mux
+func (a *Handler) SelectParam(w http.ResponseWriter, r *http.Request) {
+	a.muxParameter.SelectParam(w, r)
 }
 
 // Run the app on it's router

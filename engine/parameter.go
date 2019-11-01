@@ -7,6 +7,7 @@ type (
 		List() *ListParameterResp
 		Update(m *UpdParamReq) *UpdParamResp
 		Remove(m *RmvParameterReq) *RmvParameterResp
+		Select(m *SelParamReq) *SelParamResp
 	}
 
 	parameter struct {
