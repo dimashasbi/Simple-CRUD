@@ -80,3 +80,26 @@ func (h *systemSettings) SetBackConfig(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	DefaultRespon(w, hasil)
 }
+
+func (h *systemSettings) GetIsoMsgConfig(w http.ResponseWriter, r *http.Request) {
+	resp, fail := h.GetIsoMsgSetting()
+	w.Header().Set("Content-Type", "application/json")
+	if fail != nil {
+		hasil, _ := json.Marshal(fail)
+		DefaultRespon(w, hasil)
+	} else {
+		DefaultRespon(w, resp)
+	}
+}
+
+func (h *systemSettings) SetIsoMsgConfig(w http.ResponseWriter, r *http.Request) {
+	mod := engine.IsoMsgSettingConfig{}
+
+	json.NewDecoder(r.Body).Decode(&mod)
+
+	resp := h.SetIsoMsgSetting(&mod)
+
+	hasil, _ := json.Marshal(resp)
+	w.Header().Set("Content-Type", "application/json")
+	DefaultRespon(w, hasil)
+}

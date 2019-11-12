@@ -40,6 +40,8 @@ func (a *Handler) SetURL() {
 	a.POST("/setbaseconf", a.SetBaseConfig)
 	a.POST("/getbackconf", a.GetBackConfig)
 	a.POST("/setbackconf", a.SetBackConfig)
+	a.POST("/getisomsgconf", a.GetIsoMsgConfig)
+	a.POST("/setisomsgconf", a.SetIsoMsgConfig)
 }
 
 // GET wraps the router for GET method
@@ -77,34 +79,44 @@ func (a *Handler) SelectParam(w http.ResponseWriter, r *http.Request) {
 	a.muxParameter.SelectParam(w, r)
 }
 
-// GetFrontConfig for  Parameter Mux
+// GetFrontConfig for  SystemSettings Mux
 func (a *Handler) GetFrontConfig(w http.ResponseWriter, r *http.Request) {
 	a.muxSystemSettings.GetFrontConfig(w, r)
 }
 
-// SetFrontConfig for  Parameter Mux
+// SetFrontConfig for  SystemSettings Mux
 func (a *Handler) SetFrontConfig(w http.ResponseWriter, r *http.Request) {
 	a.muxSystemSettings.SetFrontConfig(w, r)
 }
 
-// GetBaseConfig for  Parameter Mux
+// GetBaseConfig for  SystemSettings Mux
 func (a *Handler) GetBaseConfig(w http.ResponseWriter, r *http.Request) {
 	a.muxSystemSettings.GetBaseConfig(w, r)
 }
 
-// SetBaseConfig for  Parameter Mux
+// SetBaseConfig for  SystemSettings Mux
 func (a *Handler) SetBaseConfig(w http.ResponseWriter, r *http.Request) {
 	a.muxSystemSettings.SetBaseConfig(w, r)
 }
 
-// GetBackConfig for  Parameter Mux
+// GetBackConfig for  SystemSettings Mux
 func (a *Handler) GetBackConfig(w http.ResponseWriter, r *http.Request) {
 	a.muxSystemSettings.GetBackConfig(w, r)
 }
 
-// SetBackConfig for  Parameter Mux
+// SetBackConfig for  SystemSettings Mux
 func (a *Handler) SetBackConfig(w http.ResponseWriter, r *http.Request) {
 	a.muxSystemSettings.SetBackConfig(w, r)
+}
+
+// GetIsoMsgConfig for  SystemSettings Mux
+func (a *Handler) GetIsoMsgConfig(w http.ResponseWriter, r *http.Request) {
+	a.muxSystemSettings.GetIsoMsgConfig(w, r)
+}
+
+// SetIsoMsgConfig for  SystemSettings Mux
+func (a *Handler) SetIsoMsgConfig(w http.ResponseWriter, r *http.Request) {
+	a.muxSystemSettings.SetIsoMsgConfig(w, r)
 }
 
 // Run the app on it's router

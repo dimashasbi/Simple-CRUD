@@ -11,6 +11,8 @@ type (
 		SetBaseSetting(m *BaseSettingConfig) *SysSettDefResp
 		GetBackSetting() ([]byte, *SysSettDefResp)
 		SetBackSetting(m *BackSettingConfig) *SysSettDefResp
+		GetIsoMsgSetting() ([]byte, *SysSettDefResp)
+		SetIsoMsgSetting(m *IsoMsgSettingConfig) *SysSettDefResp
 	}
 
 	systemsettings struct {
@@ -35,16 +37,3 @@ var (
 	mypass      = "JAQUESTSKYWALKER" // should under 16
 	keyEncrDecr []byte               // gonna be 16
 )
-
-// // IsoMessageConfig model for Settings Message ISO using SystemSetting KEY_02
-// IsoMessageConfig struct {
-// 	BitActive               string
-// 	PrimaryAccountNumber    string
-// 	MerchantType            string
-// 	PosEntryMode            string
-// 	AcquiringInstitutionID  string
-// 	TerminalID              string
-// 	CardAcceptorID          string
-// 	CardAcceptorName        string
-// 	ForwardingInstitutionID string
-// }
