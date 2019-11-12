@@ -22,13 +22,14 @@ func NewStorage(data model.DBConfigurationModel) engine.StorageFactory {
 	db, err := gorm.Open("postgres", psqlInfo)
 
 	if err != nil {
-		panic("failed to connect Database")
+		panic("failed to connect Database " + err.Error())
 	}
 	fmt.Println("Database Connect")
+
 	// migrate table and colomn (setting increment, null, size)
-	MigrateResult := db.AutoMigrate(&model.Registry{}, &model.Parameters{})
+	MigrateResult := db.AutoMigrate(&model.Registry{}, &model.Parameters{}, &model.Users{})
 	if MigrateResult.Error != nil {
-		panic("failed  Migrate Database")
+		panic("failed  Migrate Database " + MigrateResult.Error.Error())
 	}
 	fmt.Println("Database Migrate Success")
 
