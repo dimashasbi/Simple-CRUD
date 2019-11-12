@@ -9,21 +9,19 @@ type DBConfigurationModel struct {
 	Dbname   string
 }
 
-// // BaseApplicationConfig model for Configuration Standard
-// type BaseApplicationConfig struct {
-// 	LogFolder   string
-// 	CaName      string
-// 	ActivateSVA string
-// 	PlnDirect   string
-// }
+// BaseApplicationConfig model for Configuration Standard
+type BaseApplicationConfig struct {
+	ActivateSVA string
+	PlnDirect   string
+}
 
 // FrontSettingsConfig model for Settings Front Message / Parameter Configuration (url / message / parameter settings)
 type FrontSettingsConfig struct {
-	HTTPListeningPort string
-	HeaderMessage     HeaderHTTPMessage
+	TransactionListeningPort string
+	HeaderMessage            HeaderHTTPMessage
 }
 
-// HeaderHTTPMessage model for HTTP Message configuration using Table Parameter  using SystemSetting KEY_00
+// HeaderHTTPMessage model for HTTP Message configuration using SystemSetting KEY_00
 type HeaderHTTPMessage struct {
 	ClientID  string
 	PassKey   string
