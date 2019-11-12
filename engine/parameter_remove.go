@@ -20,7 +20,7 @@ type (
 )
 
 func (p *parameter) Remove(m *RmvParameterReq) *RmvParameterResp {
-	check := checkTagRmv(m)
+	check := p.checkTagRmv(m)
 	if check != "" {
 		return &RmvParameterResp{
 			ID:    m.ID,
@@ -41,7 +41,7 @@ func (p *parameter) Remove(m *RmvParameterReq) *RmvParameterResp {
 	}
 }
 
-func checkTagRmv(m *RmvParameterReq) string {
+func (p *parameter) checkTagRmv(m *RmvParameterReq) string {
 
 	if m.Key == nil || *m.Key == "" {
 		return "Tag Key is missing or null "

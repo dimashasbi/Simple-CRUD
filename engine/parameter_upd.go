@@ -21,7 +21,7 @@ type (
 )
 
 func (p *parameter) Update(m *UpdParamReq) *UpdParamResp {
-	check := checkTagUpd(m)
+	check := p.checkTagUpd(m)
 	if check != "" {
 		return &UpdParamResp{
 			ID:    m.ID,
@@ -43,7 +43,7 @@ func (p *parameter) Update(m *UpdParamReq) *UpdParamResp {
 	}
 }
 
-func checkTagUpd(m *UpdParamReq) string {
+func (p *parameter) checkTagUpd(m *UpdParamReq) string {
 
 	if m.Key == nil || *m.Key == "" {
 		return "Tag Key is missing or null "

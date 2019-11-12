@@ -21,7 +21,7 @@ func newParameterRepository(db *gorm.DB) engine.ParameterRepository {
 func (p parameterRepository) Insert(m *model.Parameters) error {
 	result := p.session.Create(&m)
 	if result.Error != nil {
-		return errors.Errorf("Error Input Parameter : %v", result.Error)
+		return errors.Errorf("Error Insert Parameter : %v", result.Error)
 	}
 	return nil
 }

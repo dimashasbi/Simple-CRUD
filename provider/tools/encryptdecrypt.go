@@ -13,7 +13,8 @@ var (
 	key = []byte("MGateAllCAconfig") // should 16 length
 )
 
-func encrypt(key, text []byte) ([]byte, error) {
+// Encrypt byte to byte
+func Encrypt(key, text []byte) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err
@@ -29,7 +30,8 @@ func encrypt(key, text []byte) ([]byte, error) {
 	return ciphertext, nil
 }
 
-func decrypt(key, text []byte) ([]byte, error) {
+// Decrypt byte to byte
+func Decrypt(key, text []byte) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err

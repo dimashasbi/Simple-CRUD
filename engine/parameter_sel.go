@@ -24,7 +24,7 @@ type (
 
 func (p *parameter) Select(m *SelParamReq) *SelParamResp {
 
-	check := checkTagSel(m)
+	check := p.checkTagSel(m)
 	if check != "" {
 		return &SelParamResp{
 			ID:    m.ID,
@@ -48,7 +48,7 @@ func (p *parameter) Select(m *SelParamReq) *SelParamResp {
 	}
 }
 
-func checkTagSel(m *SelParamReq) string {
+func (p *parameter) checkTagSel(m *SelParamReq) string {
 
 	if m.Key == nil || *m.Key == "" {
 		return "Tag Key is missing or null "

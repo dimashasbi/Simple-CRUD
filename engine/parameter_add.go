@@ -22,7 +22,7 @@ type (
 
 func (p *parameter) Add(m *AddParamReq) *AddParamResp {
 
-	check := checkTagAdd(m)
+	check := p.checkTagAdd(m)
 	if check != "" {
 		return &AddParamResp{
 			ID:    m.ID,
@@ -44,7 +44,7 @@ func (p *parameter) Add(m *AddParamReq) *AddParamResp {
 	}
 }
 
-func checkTagAdd(m *AddParamReq) string {
+func (p *parameter) checkTagAdd(m *AddParamReq) string {
 
 	if m.Key == nil || *m.Key == "" {
 		return "Tag Key is missing or null "

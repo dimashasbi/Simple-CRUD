@@ -12,14 +12,17 @@ import (
 type (
 	// Handler structure for Application Start Server
 	Handler struct {
-		Router       *mux.Router
-		muxParameter *parameter
+		Router            *mux.Router
+		muxParameter      *parameter
+		muxSystemSettings *systemSettings
 	}
 )
 
 // InitializeServer Application
-func (a *Handler) InitializeServer(f engine.EngineFactory) {
+func (a *Handler) InitializeServer(f engine.EnginesFactory) {
+	// add Engine
 	a.muxParameter = &parameter{f.NewParameter()}
+	a.muxSystemSettings = &systemSettings{f.NewSystemSettings()}
 	a.Router = mux.NewRouter()
 	a.SetURL()
 }
@@ -31,6 +34,8 @@ func (a *Handler) SetURL() {
 	a.POST("/updparam", a.UpdateParam)
 	a.POST("/rmvparam", a.RemoveParam)
 	a.POST("/selparam", a.SelectParam)
+	a.POST("/getfrontconf", a.GetFrontConfig)
+	a.POST("/setfrontconf", a.SetFrontConfig)
 }
 
 // GET wraps the router for GET method
@@ -66,6 +71,16 @@ func (a *Handler) RemoveParam(w http.ResponseWriter, r *http.Request) {
 // SelectParam for  Parameter Mux
 func (a *Handler) SelectParam(w http.ResponseWriter, r *http.Request) {
 	a.muxParameter.SelectParam(w, r)
+}
+
+// GetFrontConfig for  Parameter Mux
+func (a *Handler) GetFrontConfig(w http.ResponseWriter, r *http.Request) {
+	a.muxSystemSettings.GetFrontConfig(w, r)
+}
+
+// SetFrontConfig for  Parameter Mux
+func (a *Handler) SetFrontConfig(w http.ResponseWriter, r *http.Request) {
+	a.muxSystemSettings.SetFrontConfig(w, r)
 }
 
 // Run the app on it's router
