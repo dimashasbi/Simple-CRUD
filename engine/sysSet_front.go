@@ -20,15 +20,9 @@ type (
 	}
 )
 
-var (
-	keyreg      = "KEY_01"
-	keyEncrDecr = "6368616e676520746869732070617373776f726420746f206120736563726574"
-	// keyEncrDecr = "JAQUESTSKYWALKR"
-)
-
 // GetFrontSetting configuration in DB KEY_01
 func (s *systemsettings) GetFrontSetting() ([]byte, *SysSettDefResp) {
-
+	keyreg := "KEY_01"
 	// get from DB
 	reg := model.NewRegistry(keyreg, "")
 	value, err := s.repository.Select(reg)
@@ -59,6 +53,7 @@ func (s *systemsettings) GetFrontSetting() ([]byte, *SysSettDefResp) {
 }
 
 func (s *systemsettings) SetFrontSetting(e *FrontSettingConfig) *SysSettDefResp {
+	keyreg := "KEY_01"
 	// check format
 	check := s.checkTagFront(e)
 	if check != "" {
@@ -71,34 +66,49 @@ func (s *systemsettings) SetFrontSetting(e *FrontSettingConfig) *SysSettDefResp 
 
 	// check KEY there or not, if there do update else do insert
 	reg := model.NewRegistry(keyreg, "")
-	sel, err := s.repository.Select(reg)
-	if err != nil {
-		fmt.Printf("%+v", err)
+	sel, _ := s.repository.Select(reg)
+
+	if sel.Value == "" {
+		// DO INSERT IF NO VALUE
+		// encrypt
+		key, _ := hex.DecodeString(keyEncrDecr)
+		encripted, err := tools.Encrypt(key, js)
+		if err != nil {
+			fmt.Printf("%+v", err)
+			return &SysSettDefResp{
+				ID:    string(e.ID),
+				Error: "Error Encrypting",
+			}
+		}
+
+		// encode to string
+		enc := base64.StdEncoding.EncodeToString(encripted)
+
+		// put on DB
+		regis := model.NewRegistry(keyreg, enc)
+		err = s.repository.Insert(regis)
+		if err != nil {
+			fmt.Printf("%+v", err)
+			return &SysSettDefResp{
+				ID:    string(e.ID),
+				Error: "Error insert to Registry Table",
+			}
+		}
 		return &SysSettDefResp{
 			ID:    string(e.ID),
-			Error: "Error Insert to Registry Table",
+			Error: "",
 		}
 	}
 
-	result := &SysSettDefResp{}
-	if sel.Value == "" {
-		result = s.doInsert(e, js)
-	} else {
-		result = s.doUpdate(e, js)
-	}
-	return result
-}
-
-func (s *systemsettings) doUpdate(e *FrontSettingConfig, inp []byte) *SysSettDefResp {
-
+	// DO UPDATE IF THERE VALUE
 	// encrypt
 	key, _ := hex.DecodeString(keyEncrDecr)
-	encripted, err := tools.Encrypt(key, inp)
+	encripted, err := tools.Encrypt(key, js)
 	if err != nil {
 		fmt.Printf("%+v", err)
 		return &SysSettDefResp{
 			ID:    string(e.ID),
-			Error: "Error Encrypt Value",
+			Error: "Error Encrypting",
 		}
 	}
 
@@ -119,38 +129,7 @@ func (s *systemsettings) doUpdate(e *FrontSettingConfig, inp []byte) *SysSettDef
 		ID:    string(e.ID),
 		Error: "",
 	}
-}
 
-func (s *systemsettings) doInsert(e *FrontSettingConfig, inp []byte) *SysSettDefResp {
-
-	// encrypt
-	key, _ := hex.DecodeString(keyEncrDecr)
-	encripted, err := tools.Encrypt(key, inp)
-	if err != nil {
-		fmt.Printf("%+v", err)
-		return &SysSettDefResp{
-			ID:    string(e.ID),
-			Error: "Error Encrypt Value",
-		}
-	}
-
-	// encode to string
-	enc := base64.StdEncoding.EncodeToString(encripted)
-
-	// put on DB
-	regis := model.NewRegistry(keyreg, enc)
-	err = s.repository.Insert(regis)
-	if err != nil {
-		fmt.Printf("%+v", err)
-		return &SysSettDefResp{
-			ID:    string(e.ID),
-			Error: "Error insert to Registry Table",
-		}
-	}
-	return &SysSettDefResp{
-		ID:    string(e.ID),
-		Error: "",
-	}
 }
 
 func (s *systemsettings) checkTagFront(x *FrontSettingConfig) string {

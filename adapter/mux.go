@@ -36,6 +36,10 @@ func (a *Handler) SetURL() {
 	a.POST("/selparam", a.SelectParam)
 	a.POST("/getfrontconf", a.GetFrontConfig)
 	a.POST("/setfrontconf", a.SetFrontConfig)
+	a.POST("/getbaseconf", a.GetBaseConfig)
+	a.POST("/setbaseconf", a.SetBaseConfig)
+	a.POST("/getbackconf", a.GetBackConfig)
+	a.POST("/setbackconf", a.SetBackConfig)
 }
 
 // GET wraps the router for GET method
@@ -81,6 +85,26 @@ func (a *Handler) GetFrontConfig(w http.ResponseWriter, r *http.Request) {
 // SetFrontConfig for  Parameter Mux
 func (a *Handler) SetFrontConfig(w http.ResponseWriter, r *http.Request) {
 	a.muxSystemSettings.SetFrontConfig(w, r)
+}
+
+// GetBaseConfig for  Parameter Mux
+func (a *Handler) GetBaseConfig(w http.ResponseWriter, r *http.Request) {
+	a.muxSystemSettings.GetBaseConfig(w, r)
+}
+
+// SetBaseConfig for  Parameter Mux
+func (a *Handler) SetBaseConfig(w http.ResponseWriter, r *http.Request) {
+	a.muxSystemSettings.SetBaseConfig(w, r)
+}
+
+// GetBackConfig for  Parameter Mux
+func (a *Handler) GetBackConfig(w http.ResponseWriter, r *http.Request) {
+	a.muxSystemSettings.GetBackConfig(w, r)
+}
+
+// SetBackConfig for  Parameter Mux
+func (a *Handler) SetBackConfig(w http.ResponseWriter, r *http.Request) {
+	a.muxSystemSettings.SetBackConfig(w, r)
 }
 
 // Run the app on it's router

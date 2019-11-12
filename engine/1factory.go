@@ -1,7 +1,7 @@
 package engine
 
 type (
-	// EngineFactory interface allows us to provide
+	// EnginesFactory interface allows us to provide
 	// other parts of the system with a way to make
 	// instances of our use-case / interactors when
 	// they need to

@@ -5,6 +5,10 @@ type (
 	SystemSettings interface {
 		GetFrontSetting() ([]byte, *SysSettDefResp)
 		SetFrontSetting(m *FrontSettingConfig) *SysSettDefResp
+		GetBaseSetting() ([]byte, *SysSettDefResp)
+		SetBaseSetting(m *BaseSettingConfig) *SysSettDefResp
+		GetBackSetting() ([]byte, *SysSettDefResp)
+		SetBackSetting(m *BackSettingConfig) *SysSettDefResp
 	}
 
 	systemsettings struct {
@@ -24,12 +28,11 @@ func (f *engineFactory) NewSystemSettings() SystemSettings {
 	}
 }
 
-// // BackSettingsConfigReq for Response Back Setting put in System Settings
-// BackSettingsConfig struct {
-// 	ID          string
-// 	URLJavaMPAY string
-// 	URLJavaSVA  string
-// }
+var (
+	keyEncrDecr = "6368616e676520746869732070617373776f726420746f206120736563726574"
+	// keyEncrDecr = "DIMASHASBI---JAQUEST SKYWALKER---JUGGERNAUT---PHANTOM ASSASIN---"
+
+)
 
 // // IsoMessageConfig model for Settings Message ISO using SystemSetting KEY_02
 // IsoMessageConfig struct {
@@ -42,9 +45,4 @@ func (f *engineFactory) NewSystemSettings() SystemSettings {
 // 	CardAcceptorID          string
 // 	CardAcceptorName        string
 // 	ForwardingInstitutionID string
-// }
-// // BaseApplicationConfig model for Configuration Standard
-// BaseApplicationConfig struct {
-// 	ActivateSVA string
-// 	PlnDirect   string
 // }
