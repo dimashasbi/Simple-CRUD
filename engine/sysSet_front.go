@@ -6,6 +6,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 type (
@@ -27,6 +28,12 @@ func (s *systemsettings) GetFrontSetting() ([]byte, *SysSettDefResp) {
 	value, err := s.repository.Select(reg)
 	if err != nil {
 		fmt.Printf("%+v", err)
+		if strings.ContainsAny("record not found", err.Error()) {
+			return nil, &SysSettDefResp{
+				ID:    "0",
+				Error: "Error No Data Recorded",
+			}
+		}
 		return nil, &SysSettDefResp{
 			ID:    "0",
 			Error: "Error Select to Registry Table",
