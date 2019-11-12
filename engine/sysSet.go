@@ -1,5 +1,7 @@
 package engine
 
+import "fmt"
+
 type (
 	// SystemSettings is the interface for interactor
 	SystemSettings interface {
@@ -23,15 +25,15 @@ type (
 )
 
 func (f *engineFactory) NewSystemSettings() SystemSettings {
+	keyEncrDecr = []byte(fmt.Sprintf("%16v", mypass))
 	return &systemsettings{
 		repository: f.NewSystemSettingRespository(),
 	}
 }
 
 var (
-	keyEncrDecr = "6368616e676520746869732070617373776f726420746f206120736563726574"
-	// keyEncrDecr = "DIMASHASBI---JAQUEST SKYWALKER---JUGGERNAUT---PHANTOM ASSASIN---"
-
+	mypass      = "JAQUESTSKYWALKER" // should under 16
+	keyEncrDecr []byte               // gonna be 16
 )
 
 // // IsoMessageConfig model for Settings Message ISO using SystemSetting KEY_02

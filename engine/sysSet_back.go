@@ -4,7 +4,6 @@ import (
 	"M-GateDBConfig/model"
 	"M-GateDBConfig/provider/tools"
 	"encoding/base64"
-	"encoding/hex"
 	"encoding/json"
 	"fmt"
 )
@@ -37,9 +36,7 @@ func (s *systemsettings) GetBackSetting() ([]byte, *SysSettDefResp) {
 	dec, _ := base64.StdEncoding.DecodeString(value.Value)
 
 	// decrypt
-	key, _ := hex.DecodeString(keyEncrDecr)
-
-	decripted, err1 := tools.Decrypt(key, dec)
+	decripted, err1 := tools.Decrypt(keyEncrDecr, dec)
 	if err1 != nil {
 		fmt.Printf("%+v", err)
 		return nil, &SysSettDefResp{
@@ -70,8 +67,7 @@ func (s *systemsettings) SetBackSetting(e *BackSettingConfig) *SysSettDefResp {
 	if sel.Value == "" {
 		// DO INSERT IF NO VALUE
 		// encrypt
-		key, _ := hex.DecodeString(keyEncrDecr)
-		encripted, err := tools.Encrypt(key, js)
+		encripted, err := tools.Encrypt(keyEncrDecr, js)
 		if err != nil {
 			fmt.Printf("%+v", err)
 			return &SysSettDefResp{
@@ -99,10 +95,9 @@ func (s *systemsettings) SetBackSetting(e *BackSettingConfig) *SysSettDefResp {
 		}
 	}
 
-	// DO INSERT IF NO VALUE
+	// DO UPDATE IF NO VALUE
 	// encrypt
-	key, _ := hex.DecodeString(keyEncrDecr)
-	encripted, err := tools.Encrypt(key, js)
+	encripted, err := tools.Encrypt(keyEncrDecr, js)
 	if err != nil {
 		fmt.Printf("%+v", err)
 		return &SysSettDefResp{
