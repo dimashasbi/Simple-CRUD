@@ -27,13 +27,13 @@ type (
 )
 
 func (f *engineFactory) NewSystemSettings() SystemSettings {
-	keyEncrDecr = []byte(fmt.Sprintf("%16v", mypass))
+	keyEncrDecr = []byte(fmt.Sprintf("%32v", mypass))
 	return &systemsettings{
 		repository: f.NewSystemSettingRespository(),
 	}
 }
 
 var (
-	mypass      = "JAQUESTSKYWALKER" // should under 16
-	keyEncrDecr []byte               // gonna be 16
+	mypass      = "JAQUESTSKYWALKERSS" // max 32
+	keyEncrDecr []byte                 // gonna be 32
 )
