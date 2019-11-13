@@ -3,6 +3,7 @@ package engine
 import (
 	"M-GateDBConfig/model"
 	"fmt"
+	"strings"
 )
 
 type (
@@ -33,6 +34,12 @@ func (p *parameter) Add(m *AddParamReq) *AddParamResp {
 	err := p.repository.Insert(param)
 	if err != nil {
 		fmt.Printf("%+v", err)
+		if strings.ContainsAny("record not found", err.Error()) {
+			return &AddParamResp{
+				ID:    string(m.ID),
+				Error: "Error No Data Recorded",
+			}
+		}
 		return &AddParamResp{
 			ID:    string(m.ID),
 			Error: "Error input to Parameter Table",

@@ -3,6 +3,7 @@ package engine
 import (
 	"M-GateDBConfig/model"
 	"fmt"
+	"strings"
 )
 
 type (
@@ -31,6 +32,12 @@ func (p *parameter) Remove(m *RmvParameterReq) *RmvParameterResp {
 	err := p.repository.Remove(param)
 	if err != nil {
 		fmt.Printf("%+v", err)
+		if strings.ContainsAny("record not found", err.Error()) {
+			return &RmvParameterResp{
+				ID:    string(m.ID),
+				Error: "Error No Data Recorded",
+			}
+		}
 		return &RmvParameterResp{
 			Error: "Error Delete in Parameter Table",
 		}

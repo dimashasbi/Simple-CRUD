@@ -3,6 +3,7 @@ package engine
 import (
 	"M-GateDBConfig/model"
 	"fmt"
+	"strings"
 )
 
 type (
@@ -32,6 +33,12 @@ func (p *parameter) Update(m *UpdParamReq) *UpdParamResp {
 	err := p.repository.Update(param)
 	if err != nil {
 		fmt.Printf("%+v", err)
+		if strings.ContainsAny("record not found", err.Error()) {
+			return &UpdParamResp{
+				ID:    string(m.ID),
+				Error: "Error No Data Recorded",
+			}
+		}
 		return &UpdParamResp{
 			ID:    string(m.ID),
 			Error: "Error Update to Parameter Table",

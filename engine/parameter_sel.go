@@ -3,6 +3,7 @@ package engine
 import (
 	"M-GateDBConfig/model"
 	"fmt"
+	"strings"
 )
 
 type (
@@ -35,6 +36,12 @@ func (p *parameter) Select(m *SelParamReq) *SelParamResp {
 	result, err := p.repository.Select(param)
 	if err != nil {
 		fmt.Printf("%+v", err)
+		if strings.ContainsAny("record not found", err.Error()) {
+			return &SelParamResp{
+				ID:    string(m.ID),
+				Error: "Error No Data Recorded",
+			}
+		}
 		return &SelParamResp{
 			ID:    string(m.ID),
 			Error: "Error Select to Parameter Table",
