@@ -2,31 +2,52 @@ package fileconfig
 
 import (
 	"M-GateDBConfig/model"
-	"strconv"
 
 	"github.com/spf13/viper"
 )
 
+// CreateDBConfig to create File config
+func CreateDBConfig() {
+	v := viper.New()
+	v.SetConfigType("json")
+	v.AddConfigPath("./")
+	dbhost := model.DBConfigurationModel{
+		Dbname:   "hasbidatabase",
+		Password: "dimskii",
+		Host:     "127.0.0.1",
+		Port:     5432,
+		User:     "hasbi",
+	}
+
+	// err := v.ReadInConfig()
+	// if err != nil {
+	// 	panic(err)
+	// }
+	v.SetDefault("db", dbhost)
+	v.WriteConfigAs("appconfig.json")
+}
+
 // GetDBConfig to start get file
 func GetDBConfig() model.DBConfigurationModel {
 	// mylog.MnDebug("Load DB Configuration ")
-	viper.SetConfigType("json")
-	viper.AddConfigPath("./")
-	viper.SetConfigName("appconfig")
+	v := viper.New()
+	v.SetConfigType("json")
+	v.AddConfigPath("./")
+	v.SetConfigName("appconfig")
 
 	dbhost := model.DBConfigurationModel{}
 
-	err := viper.ReadInConfig()
+	err := v.ReadInConfig()
 	if err != nil {
 		panic(err)
 	}
 
 	// put to Model
-	dbhost.Host = viper.GetString("db.host")
-	port, err := strconv.Atoi(viper.GetString("db.port"))
-	dbhost.Port = port
-	dbhost.User = viper.GetString("db.user")
-	dbhost.Password = viper.GetString("db.password")
-	dbhost.Dbname = viper.GetString("db.dbname")
+	dbhost.Host = v.GetString("db.host")
+	// port, err := strconv.Atoi(viper.GetString("db.port"))
+	dbhost.Port = v.GetInt("db.port")
+	dbhost.User = v.GetString("db.user")
+	dbhost.Password = v.GetString("db.password")
+	dbhost.Dbname = v.GetString("db.dbname")
 	return dbhost
 }

@@ -12,6 +12,9 @@ import (
 
 func main() {
 
+	// // create file config
+	// fileconfig.CreateDBConfig()
+
 	// Load Configuration
 	dbConfig := fileconfig.GetDBConfig()
 

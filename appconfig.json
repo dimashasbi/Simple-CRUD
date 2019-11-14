@@ -1,15 +1,9 @@
 {
-    "BaseApplicationConfig":{
-        "CaName" :"",
-        "LogFolder" :"./logs",
-        "ActivateSVA" :"",
-        "PlnDirect" :""
-    },
-    "db": {
-        "dbname": "hasbidatabase",
-        "host": "127.0.0.1",
-        "password": "dimskii",
-        "port": 5432,
-        "user": "hasbi"
-    }
+  "db": {
+    "Host": "127.0.0.1",
+    "Port": 5432,
+    "User": "hasbi",
+    "Password": "dimskii",
+    "Dbname": "hasbidatabase"
+  }
 }
