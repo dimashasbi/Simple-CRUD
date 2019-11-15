@@ -17,6 +17,6 @@ func NewRegistry(key, value string) *Registry {
 	return &Registry{
 		Key:   key,
 		Value: value,
-		Date:  now(),
+		Date:  time.Time{},
 	}
 }

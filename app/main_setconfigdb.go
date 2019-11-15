@@ -2,7 +2,7 @@ package main
 
 import (
 	"M-GateDBConfig/adapter"
-	"M-GateDBConfig/app/fileconfig"
+	"M-GateDBConfig/provider/fileconfig"
 	"M-GateDBConfig/engine"
 
 	"M-GateDBConfig/provider/postgres"
