@@ -8,6 +8,7 @@ type (
 	EnginesFactory interface {
 		NewParameter() Parameter
 		NewSystemSettings() SystemSettings
+		NewTestEngine() TestingEngineStruct
 	}
 
 	engineFactory struct {
